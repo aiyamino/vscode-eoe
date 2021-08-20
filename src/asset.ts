@@ -1,40 +1,58 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import axios from 'axios'
 import { Utility } from './utility';
+
+export interface ASoulGetRandomPicResult {
+    img: string,
+    dy_url: string
+}
+export type ImageSource = ASoulGetRandomPicResult | vscode.Uri | string
+export function isASoulGetRandomPicResult(source: ImageSource): source is ASoulGetRandomPicResult {
+    const result = source as ASoulGetRandomPicResult
+    return result.img !== undefined && result.dy_url !== undefined
+}
 
 export default class Asset {
     public readonly TYPE_URL_IMAGE = 'url';
+    public readonly TYPE_RANDOM = 'random';
     public readonly TYPE_DEFAULT = 'default';
 
     public constructor(private context: vscode.ExtensionContext) {
     }
 
-    public getImageUri(): vscode.Uri | string {
+    public async getImageUri(): Promise<ImageSource> {
         const type: string = this.getConfigType();
-        let images: vscode.Uri[] | string[];
+        let images: ImageSource[];
 
-        if (type === this.TYPE_URL_IMAGE) {
+        if (type === this.TYPE_RANDOM) {
+            images = await this.getRandomImages();
+        } else if (type === this.TYPE_URL_IMAGE) {
             images = this.getCustomImages();
         } else {
             images = this.getDefaultImages();
         }
-        // user forget setting customImages, get default images
+        // user forget setting customImages, get random images
+        if (type === this.TYPE_URL_IMAGE && images.length === 0) {
+            images = await this.getRandomImages();
+        }
+        // maybe offline
         if (images.length === 0) {
-            images = this.getDefaultImages();
+        images = this.getDefaultImages();
         }
         const image = this.getRandomOne(images);
 
         return image;
     }
 
-    protected getRandomOne(images: string[] | vscode.Uri[]): string | vscode.Uri {
+    protected getRandomOne(images: ImageSource[]): ImageSource {
         const n = Math.floor(Math.random() * images.length + 1) - 1;
         return images[n];
     }
 
     protected getDefaultImages(): vscode.Uri[] {
-        const dirPath = this.getDefaultYcyImagePath();
+        const dirPath = this.getDefaultAsoulImagePath();
         const files = this.readPathImage(dirPath);
         return files;
     }
@@ -51,17 +69,27 @@ export default class Asset {
         return files;
     }
 
-    protected getDefaultYcyImagePath() {
-        return path.join(this.context.extensionPath, 'images/ycy');
+    protected getDefaultAsoulImagePath() {
+        return path.join(this.context.extensionPath, 'images/asoul');
     }
 
-
     protected getConfigType(): string {
-        return Utility.getConfiguration().get<string>('type', 'default');
+        return Utility.getConfiguration().get<string>('type', 'random');
     }
 
     protected getCustomImages() {
         return Utility.getConfiguration().get<string[]>('customImages', []);
+    }
+
+    protected async getRandomImages() {
+        try {
+            const response = await axios.get<ASoulGetRandomPicResult>(
+                "https://asoushare-1149900-1306812141.ap-shanghai.run.tcloudbase.com/getRandomPic",
+                {timeout: 5000});
+            return [response.data];
+        } catch (err) {
+            return [] as ASoulGetRandomPicResult[];
+        }
     }
 
     public getTitle(): string {

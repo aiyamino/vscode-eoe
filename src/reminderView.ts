@@ -1,21 +1,22 @@
 'use strict';
 import * as vscode from 'vscode';
 import Asset from './asset';
+import {ImageSource, isASoulGetRandomPicResult} from './asset'
 
 export class ReminderView {
     private static panel: vscode.WebviewPanel | undefined;
 
-    public static show(context: vscode.ExtensionContext, ) {
+    public static async show(context: vscode.ExtensionContext, ) {
         let asset: Asset = new Asset(context);
 
-        const imagePath = asset.getImageUri();
+        const imagePath = await asset.getImageUri();
         const title = asset.getTitle();
 
         if (this.panel) {
             this.panel.webview.html = this.generateHtml(imagePath, title);
             this.panel.reveal();
         } else {
-            this.panel = vscode.window.createWebviewPanel("ycy", "杨超越", vscode.ViewColumn.Two, {
+            this.panel = vscode.window.createWebviewPanel("asoul", "A-SOUL", vscode.ViewColumn.Two, {
                 enableScripts: true,
                 retainContextWhenHidden: true,
             });
@@ -26,20 +27,31 @@ export class ReminderView {
         }
     }
 
-    protected static generateHtml(imagePath: vscode.Uri|string, title: string): string {
-        let html = `<!DOCTYPE html>
+    protected static generateHtml(imagePath: ImageSource, title: string): string {
+        let html1 = `<!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>杨超越</title>
+            <title>A-SOUL</title>
         </head>
-        <body>
+        <body>`;
+
+        let html2: string;
+        if (isASoulGetRandomPicResult(imagePath)) {
+            html2 = `
+            <div><h1>${title} (<a href="${imagePath.dy_url}">来源</a>)</h1></div>
+            <div><img src="${imagePath.img}"></div>`;
+        } else {
+            html2 = `
             <div><h1>${title}</h1></div>
-            <div><img src="${imagePath}"></div>
+            <div><img src="${imagePath}"></div>`;
+        }
+
+        let html3=`
         </body>
         </html>`;
 
-        return html;
+        return html1 + html2 + html3;
     }
 }

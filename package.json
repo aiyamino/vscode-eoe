@@ -1,9 +1,9 @@
 {
-    "name": "ycy",
-    "displayName": "超越鼓励师",
-    "description": "写代码不再孤单，有杨超越与你同在",
+    "name": "asoul",
+    "displayName": "A-SOUL鼓励师",
+    "description": "写代码不再孤单，有A-SOUL与你同在",
     "version": "0.1.2",
-    "publisher": "formulahendry",
+    "publisher": "as042971",
     "icon": "logo.jpg",
     "engines": {
         "vscode": "^1.30.0"
@@ -12,55 +12,56 @@
         "Other"
     ],
     "keywords": [
-        "杨超越",
+        "A-SOUL",
         "提醒",
         "鼓励"
     ],
     "bugs": {
-        "url": "https://github.com/formulahendry/vscode-ycy/issues",
-        "email": "formulahendry@gmail.com"
+        "url": "https://github.com/as042971/vscode-asoul/issues",
+        "email": "as042971@outlook.com"
     },
-    "homepage": "https://github.com/formulahendry/vscode-ycy/blob/master/README.md",
+    "homepage": "https://github.com/as042971/vscode-asoul/blob/master/README.md",
     "repository": {
         "type": "git",
-        "url": "https://github.com/formulahendry/vscode-ycy.git"
+        "url": "https://github.com/as042971/vscode-asoul.git"
     },
     "activationEvents": [
-        "onCommand:ycy.showReminderView",
+        "onCommand:asoul.showReminderView",
         "*"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
             {
-                "command": "ycy.showReminderView",
+                "command": "asoul.showReminderView",
                 "title": "打开提醒页面",
-                "category": "ycy"
+                "category": "asoul"
             }
         ],
         "configuration": {
             "type": "object",
-            "title": "杨超越",
+            "title": "A-SOUL",
             "properties": {
-                "ycy.reminderViewIntervalInMinutes": {
+                "asoul.reminderViewIntervalInMinutes": {
                     "type": "number",
                     "default": 60,
                     "description": "展示提醒页面的时间间隔（分钟）"
                 },
-                "ycy.title": {
+                "asoul.title": {
                     "type": "string",
-                    "default": "小哥哥，小哥哥，代码写久了，该休息啦~",
+                    "default": "亲爱的一个魂儿，代码写久了，该休息啦~",
                     "description": "页面内展示文字"
                 },
-                "ycy.type": {
+                "asoul.type": {
                     "type": "string",
-                    "default": "default",
-                    "description": "类型：default:默认图；url：网络图"
+                    "default": "random",
+                    "enum": ["url", "random", "default"],
+                    "enumDescriptions": ["自定义网图", "随机二创", "内置图"],
+                    "description": "图片来源"
                 },
-                "ycy.customImages": {
+                "asoul.customImages": {
                     "type": "array",
                     "default": [
-                        "http://b-ssl.duitang.com/uploads/item/201806/04/20180604090459_gqqjo.jpg"
                     ],
                     "description": "用户设置图片地址"
                 }
@@ -75,10 +76,11 @@
         "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.21",
-        "tslint": "^5.8.0",
+        "@types/mocha": "^2.2.42",
         "@types/node": "^8.10.25",
-        "@types/mocha": "^2.2.42"
+        "axios": "^0.21.1",
+        "tslint": "^5.8.0",
+        "typescript": "^3.5.1",
+        "vscode": "^1.1.21"
     }
 }
