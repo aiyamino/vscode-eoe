@@ -9,7 +9,18 @@ export class Scheduler {
 
     public start() {
         setInterval(() => {
-            ReminderView.show(this.context);
+            const notification = Utility.getConfiguration().get<boolean>('notification', false);
+
+            if (notification) {
+                const title = Utility.getConfiguration().get<string>('title', '');
+                vscode.window.showInformationMessage(title, "放松一下!").then((val) => {
+                    if (val) {
+                        ReminderView.show(this.context);
+                    }
+                })
+            } else {
+                ReminderView.show(this.context);
+            }
         }, 1000 * 60 * Utility.getConfiguration().get<number>('reminderViewIntervalInMinutes', 60));
     }
 }

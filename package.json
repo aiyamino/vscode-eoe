@@ -2,7 +2,7 @@
     "name": "asoul",
     "displayName": "A-SOUL鼓励师",
     "description": "写代码不再孤单，有A-SOUL与你同在",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "publisher": "as042971",
     "icon": "logo.jpg",
     "engines": {
@@ -27,6 +27,7 @@
     },
     "activationEvents": [
         "onCommand:asoul.showReminderView",
+        "onCommand:asoul.openGallery",
         "*"
     ],
     "main": "./out/extension",
@@ -35,6 +36,11 @@
             {
                 "command": "asoul.showReminderView",
                 "title": "打开提醒页面",
+                "category": "asoul"
+            },
+            {
+                "command": "asoul.openGallery",
+                "title": "打开二创画廊 (默认浏览器)",
                 "category": "asoul"
             }
         ],
@@ -64,6 +70,11 @@
                     "default": [
                     ],
                     "description": "用户设置图片地址"
+                },
+                "asoul.notification": {
+                    "type":"boolean",
+                    "default": false,
+                    "description": "防社死模式：通过右下角消息框提醒休息，而非直接弹出页面"
                 }
             }
         }
