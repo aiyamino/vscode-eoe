@@ -18,14 +18,25 @@ export interface ASoulGetRandomPicResult {
 }
 export type ImageSource = ASoulGetRandomPicResult | vscode.Uri | string
 export function isASoulGetRandomPicResult(source: ImageSource): source is ASoulGetRandomPicResult {
-    const result = source as ASoulGetRandomPicResult
-    return result.img !== undefined && result.dy_url !== undefined
+    const result = source as ASoulGetRandomPicResult;
+    return result.img !== undefined && result.dy_url !== undefined && result.tags !== undefined;
+}
+export function isUri(source: ImageSource): source is vscode.Uri {
+    const result = source as vscode.Uri;
+    return result.path !== undefined;
 }
 
 export default class Asset {
     public readonly TYPE_URL_IMAGE = 'url';
     public readonly TYPE_RANDOM = 'random';
     public readonly TYPE_DEFAULT = 'default';
+
+    public readonly NAME_AVA = 'ava';
+    public readonly NAME_BELLA = 'bella';
+    public readonly NAME_CAROL = 'carol';
+    public readonly NAME_DIANA = 'diana';
+    public readonly NAME_EILEEN = 'eileen';
+    public readonly NAME_OTHERS = 'others';
 
     public constructor(private context: vscode.ExtensionContext) {
     }
@@ -93,7 +104,7 @@ export default class Asset {
         try {
             const response = await axios.get<ASoulGetRandomPicResult>(
                 "https://api.asoul.cloud:8000/getRandomPic",
-                {timeout: 5000});
+                {timeout: 8000});
             return [response.data];
         } catch (err) {
             return [] as ASoulGetRandomPicResult[];
@@ -102,5 +113,76 @@ export default class Asset {
 
     public getTitle(): string {
         return Utility.getConfiguration().get<string>('title', '');
+    }
+
+    public getName(tags: ASoulTag[]): string {
+        let tagsCnt = 0;
+        let name = this.NAME_OTHERS;
+        tags.forEach(element => {
+            if (element.tag_title.includes('向晚')) {
+                tagsCnt++;
+                name = this.NAME_AVA;
+            }
+            if (element.tag_title.includes('贝拉')) {
+                tagsCnt++;
+                name = this.NAME_BELLA;
+            }
+            if (element.tag_title.includes('珈乐')) {
+                tagsCnt++;
+                name = this.NAME_CAROL;
+            }
+            if (element.tag_title.includes('嘉然')) {
+                tagsCnt++;
+                name = this.NAME_DIANA;
+            }
+            if (element.tag_title.includes('乃琳')) {
+                tagsCnt++;
+                name = this.NAME_EILEEN;
+            }
+        });
+        if (tagsCnt != 1) {
+            name  = this.NAME_OTHERS;
+        }
+        return name;
+    }
+
+    public getNameFromUri(uri: vscode.Uri): string {
+        let name = this.NAME_OTHERS;
+        if (uri.path.includes('ava')) {
+            name = this.NAME_AVA;
+        }
+        if (uri.path.includes('bella')) {
+            name = this.NAME_BELLA;
+        }
+        if (uri.path.includes('carol')) {
+            name = this.NAME_CAROL;
+        }
+        if (uri.path.includes('diana')) {
+            name = this.NAME_DIANA;
+        }
+        if (uri.path.includes('eileen')) {
+            name = this.NAME_EILEEN;
+        }
+        return name;
+    }
+
+    public getNamedTitle(name: string): string {
+        let title = "";
+        if (name === this.NAME_AVA) {
+            title = Utility.getConfiguration().get<string>('titleAva', '');
+        } else if (name === this.NAME_BELLA) {
+            title = Utility.getConfiguration().get<string>('titleBella', '');
+        } else if (name === this.NAME_CAROL) {
+            title = Utility.getConfiguration().get<string>('titleCarol', '');
+        } else if (name === this.NAME_DIANA) {
+            title = Utility.getConfiguration().get<string>('titleDiana', '');
+        } else if (name === this.NAME_EILEEN) {
+            title = Utility.getConfiguration().get<string>('titleEileen', '');
+        }
+
+        if (title === ""){
+            title = Utility.getConfiguration().get<string>('title', '');
+        }
+        return title;
     }
 }

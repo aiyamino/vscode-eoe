@@ -1,7 +1,7 @@
 'use strict';
 import * as vscode from 'vscode';
 import Asset from './asset';
-import {ImageSource, isASoulGetRandomPicResult} from './asset'
+import {ImageSource, isASoulGetRandomPicResult, isUri} from './asset'
 
 export class ReminderView {
     private static panel: vscode.WebviewPanel | undefined;
@@ -10,7 +10,16 @@ export class ReminderView {
         let asset: Asset = new Asset(context);
 
         const imagePath = await asset.getImageUri();
-        const title = asset.getTitle();
+        let title = "";
+        if (isASoulGetRandomPicResult(imagePath)) {
+            const name = asset.getName(imagePath.tags);
+            title = asset.getNamedTitle(name);
+        } else if (isUri(imagePath)) {
+            const name = asset.getNameFromUri(imagePath);
+            title = asset.getNamedTitle(name);
+        } else {
+            title = asset.getTitle();
+        }
 
         if (this.panel) {
             this.panel.webview.html = this.generateHtml(imagePath, title);

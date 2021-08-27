@@ -56,7 +56,32 @@
                 "asoul.title": {
                     "type": "string",
                     "default": "亲爱的一个魂儿，代码写久了，该休息啦~",
-                    "description": "页面内展示文字"
+                    "description": "默认的页面内展示文字"
+                },
+                "asoul.titleAva": {
+                    "type": "string",
+                    "default": "亲爱的顶碗人，代码写久了，该休息啦~ 要天天开心呀",
+                    "description": "🎸向晚🎸相关图片的页面内展示文字"
+                },
+                "asoul.titleBella": {
+                    "type": "string",
+                    "default": "亲爱的贝极星，代码写久了，该休息啦~ 要多多运动，身体健康吖",
+                    "description": "💃贝拉💃相关图片的页面内展示文字"
+                },
+                "asoul.titleCarol": {
+                    "type": "string",
+                    "default": "亲爱的皇珈骑士，代码写久了，该休息啦~ 今天也是酷酷的捏",
+                    "description": "🎤珈乐🎤相关图片的页面内展示文字"
+                },
+                "asoul.titleDiana": {
+                    "type": "string",
+                    "default": "亲爱的嘉心糖，代码写久了，该休息啦~ 要注意劳逸结合喔",
+                    "description": "🎀嘉然🎀相关图片的页面内展示文字"
+                },
+                "asoul.titleEileen": {
+                    "type": "string",
+                    "default": "亲爱的奶淇琳，代码写久了，该休息啦~ 想要陪你双向奔赴",
+                    "description": "💄乃琳💄相关图片的页面内展示文字"
                 },
                 "asoul.type": {
                     "type": "string",
