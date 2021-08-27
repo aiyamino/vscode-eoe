@@ -61,18 +61,25 @@
                 "asoul.type": {
                     "type": "string",
                     "default": "random",
-                    "enum": ["url", "random", "default"],
-                    "enumDescriptions": ["自定义网图", "随机二创", "内置图"],
+                    "enum": [
+                        "url",
+                        "random",
+                        "default"
+                    ],
+                    "enumDescriptions": [
+                        "自定义网图",
+                        "随机二创",
+                        "内置图"
+                    ],
                     "description": "图片来源"
                 },
                 "asoul.customImages": {
                     "type": "array",
-                    "default": [
-                    ],
+                    "default": [],
                     "description": "用户设置图片地址"
                 },
                 "asoul.notification": {
-                    "type":"boolean",
+                    "type": "boolean",
                     "default": false,
                     "description": "防社死模式：通过右下角消息框提醒休息，而非直接弹出页面"
                 }

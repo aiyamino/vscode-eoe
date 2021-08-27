@@ -4,9 +4,17 @@ import * as fs from 'fs';
 import axios from 'axios'
 import { Utility } from './utility';
 
+// UNSAFE
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
+export interface ASoulTag {
+    tag_id: number
+    tag_title: string
+}
 export interface ASoulGetRandomPicResult {
     img: string,
-    dy_url: string
+    dy_url: string,
+    tags: ASoulTag[]
 }
 export type ImageSource = ASoulGetRandomPicResult | vscode.Uri | string
 export function isASoulGetRandomPicResult(source: ImageSource): source is ASoulGetRandomPicResult {
@@ -84,7 +92,7 @@ export default class Asset {
     protected async getRandomImages() {
         try {
             const response = await axios.get<ASoulGetRandomPicResult>(
-                "https://asoushare-1149900-1306812141.ap-shanghai.run.tcloudbase.com/getRandomPic",
+                "https://api.asoul.cloud:8000/getRandomPic",
                 {timeout: 5000});
             return [response.data];
         } catch (err) {
