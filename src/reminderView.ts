@@ -15,8 +15,13 @@ export class ReminderView {
             const name = asset.getName(imagePath.tags);
             title = asset.getNamedTitle(name);
         } else if (isUri(imagePath)) {
-            const name = asset.getNameFromUri(imagePath);
-            title = asset.getNamedTitle(name);
+            if (imagePath.path.includes('niuniu')) {
+                title = asset.getTitle();
+                title += " 勇敢牛牛，不怕困难！"
+            } else {
+                const name = asset.getNameFromUri(imagePath);
+                title = asset.getNamedTitle(name);
+            }
         } else {
             title = asset.getTitle();
         }

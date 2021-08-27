@@ -2,7 +2,7 @@
     "name": "asoul",
     "displayName": "A-SOUL鼓励师",
     "description": "写代码不再孤单，有A-SOUL与你同在",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "publisher": "as042971",
     "icon": "logo.jpg",
     "engines": {
@@ -89,12 +89,16 @@
                     "enum": [
                         "url",
                         "random",
-                        "default"
+                        "default",
+                        "niuniu",
+                        "cao"
                     ],
                     "enumDescriptions": [
                         "自定义网图",
                         "随机二创",
-                        "内置图"
+                        "内置图",
+                        "勇敢牛牛，不怕困难！",
+                        "狂暴鸿儒"
                     ],
                     "description": "图片来源"
                 },

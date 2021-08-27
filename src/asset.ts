@@ -30,6 +30,8 @@ export default class Asset {
     public readonly TYPE_URL_IMAGE = 'url';
     public readonly TYPE_RANDOM = 'random';
     public readonly TYPE_DEFAULT = 'default';
+    public readonly TYPE_CAO = "cao";
+    public readonly TYPE_NIUNIU = "niuniu";
 
     public readonly NAME_AVA = 'ava';
     public readonly NAME_BELLA = 'bella';
@@ -49,6 +51,10 @@ export default class Asset {
             images = await this.getRandomImages();
         } else if (type === this.TYPE_URL_IMAGE) {
             images = this.getCustomImages();
+        } else if (type === this.TYPE_CAO) {
+            images = this.getCaoImages();
+        } else if (type === this.TYPE_NIUNIU) {
+            images = this.getNiuImages();
         } else {
             images = this.getDefaultImages();
         }
@@ -76,6 +82,16 @@ export default class Asset {
         return files;
     }
 
+    protected getCaoImages(): vscode.Uri[] {
+        const dirPath = this.getDefaultCaoImagePath();
+        const files = this.readPathImage(dirPath);
+        return files;
+    }
+
+    protected getNiuImages(): vscode.Uri[] {
+        return [vscode.Uri.file(path.join(this.context.extensionPath, 'images/niuniu.gif')).with({ scheme: 'vscode-resource' })]
+    }
+
     protected readPathImage(dirPath: string): vscode.Uri[] {
         let files: vscode.Uri[] = [];
         const result = fs.readdirSync(dirPath);
@@ -90,6 +106,10 @@ export default class Asset {
 
     protected getDefaultAsoulImagePath() {
         return path.join(this.context.extensionPath, 'images/asoul');
+    }
+
+    protected getDefaultCaoImagePath() {
+        return path.join(this.context.extensionPath, 'images/cao');
     }
 
     protected getConfigType(): string {
