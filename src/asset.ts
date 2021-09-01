@@ -139,23 +139,23 @@ export default class Asset {
         let tagsCnt = 0;
         let name = this.NAME_OTHERS;
         tags.forEach(element => {
-            if (element.tag_title.includes('向晚')) {
+            if (element.tag_title.includes('向晚') && name != this.NAME_AVA) {
                 tagsCnt++;
                 name = this.NAME_AVA;
             }
-            if (element.tag_title.includes('贝拉')) {
+            if (element.tag_title.includes('贝拉') && name != this.NAME_BELLA) {
                 tagsCnt++;
                 name = this.NAME_BELLA;
             }
-            if (element.tag_title.includes('珈乐')) {
+            if (element.tag_title.includes('珈乐') && name != this.NAME_CAROL) {
                 tagsCnt++;
                 name = this.NAME_CAROL;
             }
-            if (element.tag_title.includes('嘉然')) {
+            if (element.tag_title.includes('嘉然') && name != this.NAME_DIANA) {
                 tagsCnt++;
                 name = this.NAME_DIANA;
             }
-            if (element.tag_title.includes('乃琳')) {
+            if (element.tag_title.includes('乃琳') && name != this.NAME_EILEEN) {
                 tagsCnt++;
                 name = this.NAME_EILEEN;
             }
