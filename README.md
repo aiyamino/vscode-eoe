@@ -44,3 +44,7 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 1、找到vscode插件安装的地方 (如mac 在~/.vscode/extensions/as042971.asoul-{version})
 
 2、替换images/asoul内图片
+
+## 友情链接
+
+[A-SOUL 提醒小助手](https://marketplace.visualstudio.com/items?itemName=JiangYan.asoul-notifications&ssr=false#overview)

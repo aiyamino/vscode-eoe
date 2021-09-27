@@ -35,6 +35,7 @@ export class ReminderView {
                 retainContextWhenHidden: true,
             });
             this.panel.webview.html = this.generateHtml(imagePath, title);
+
             this.panel.onDidDispose(() => {
                 this.panel = undefined;
             });
@@ -54,7 +55,8 @@ export class ReminderView {
         let html2: string;
         if (isASoulGetRandomPicResult(imagePath)) {
             html2 = `
-            <div><h1>${title} (<a href="${imagePath.dy_url}">来源</a>)</h1></div>
+            <div><h1>${title}</h1></div>
+            <div><h2><a href="${imagePath.dy_url}">来源…</a>  <a href="https://asoul.cloud/pic">更多…</a></h2></div>
             <div><img src="${imagePath.img}"></div>`;
         } else {
             html2 = `
