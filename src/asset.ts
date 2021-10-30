@@ -92,6 +92,24 @@ export default class Asset {
         return [vscode.Uri.file(path.join(this.context.extensionPath, 'images/niuniu.gif')).with({ scheme: 'vscode-resource' })]
     }
 
+    public getWebviewToolkitURI(): vscode.Uri {
+        return vscode.Uri.file(path.join(this.context.extensionPath,
+            "node_modules",
+            "@vscode",
+            "webview-ui-toolkit",
+            "dist",
+            "toolkit.js"
+        ));
+    }
+
+    public getButtonJsURI(): vscode.Uri {
+        return vscode.Uri.file(path.join(this.context.extensionPath,
+            "src",
+            "button.js"
+        ));
+    }
+
+
     protected readPathImage(dirPath: string): vscode.Uri[] {
         let files: vscode.Uri[] = [];
         const result = fs.readdirSync(dirPath);

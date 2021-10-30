@@ -2,7 +2,7 @@
     "name": "asoul",
     "displayName": "A-SOUL 鼓励师",
     "description": "写代码不再孤单，有A-SOUL与你同在",
-    "version": "0.3.2",
+    "version": "0.4.0",
     "publisher": "as042971",
     "icon": "logo.png",
     "engines": {
@@ -121,6 +121,7 @@
         "watch": "tsc -watch -p ./"
     },
     "dependencies": {
+        "@vscode/webview-ui-toolkit": "^0.8.3",
         "axios": ">=0.21.2"
     },
     "devDependencies": {

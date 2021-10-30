@@ -9,6 +9,7 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 除了每过一小时会自动弹出提醒页面，也可以按 `F1`, 然后输入 `asoul: 打开提醒页面`来打开提醒页面
 
 ![usage](images/usage.png)
+(展示用图片来自[这里](https://t.bilibili.com/580623627884440502))
 
 ## 配置
 
@@ -17,7 +18,7 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 * `asoul.titleAva`, `asoul.titleBella`, `asoul.titleCarol`, `asoul.titleDiana`, `asoul.titleEileen`: 五位成员的专属提示文字。在图片的Tag唯一包含这位成员时，会优先显示这里设定的成员专属提示。
 * `asoul.type`: url: 自定义网图; random: 来自[这里](https://asoul.cloud/pic)的随机二创; default: 内置图(A-SOUL成员的官方海报); niuniu: 牛牛鼓励师; cao: 阿草鼓励师。(默认值为**random**)
 * `asoul.customImages`: 配置自定义网图对应的图片数组（需要搭配asoul.type为url）
-* `asoul.notification`: 是否打开防社死模式。在防社死模式下，每到设定的时间后，不会直接弹出图片窗口，而是会在右下角显示消息提醒（数秒后消失），手动点击后才会打开页面。(默认值为**false**)
+* `asoul.notification`: 是否打开防社死模式。在防社死模式下，每到设定的时间后，不会直接弹出图片窗口，而是会在右下角显示消息提醒（数秒后消失），手动点击后才会打开页面。(默认值为**true**)
 ![usage](images/notification.png)
 
 如下例子，使用自定义网图：
