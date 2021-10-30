@@ -47,4 +47,8 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
 ## 友情链接
 
-[A-SOUL 提醒小助手](https://marketplace.visualstudio.com/items?itemName=JiangYan.asoul-notifications&ssr=false#overview)
+[VSCode插件：A-SOUL 提醒小助手](https://marketplace.visualstudio.com/items?itemName=JiangYan.asoul-notifications&ssr=false#overview)
+
+[Windows 10/11 版提醒小助手](https://github.com/skykeyjoker/A-Soul-Notification)
+
+[Typora主题：Typora-theme-jiaran](https://github.com/q19980722/Typora-theme-jiaran)

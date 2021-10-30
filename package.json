@@ -1,10 +1,10 @@
 {
     "name": "asoul",
-    "displayName": "A-SOUL鼓励师",
+    "displayName": "A-SOUL 鼓励师",
     "description": "写代码不再孤单，有A-SOUL与你同在",
     "version": "0.3.2",
     "publisher": "as042971",
-    "icon": "logo.jpg",
+    "icon": "logo.png",
     "engines": {
         "vscode": "^1.59.0"
     },
@@ -46,7 +46,7 @@
         ],
         "configuration": {
             "type": "object",
-            "title": "A-SOUL",
+            "title": "A-SOUL 鼓励师",
             "properties": {
                 "asoul.reminderViewIntervalInMinutes": {
                     "type": "number",
@@ -109,7 +109,7 @@
                 },
                 "asoul.notification": {
                     "type": "boolean",
-                    "default": false,
+                    "default": true,
                     "description": "防社死模式：通过右下角消息框提醒休息，而非直接弹出页面"
                 }
             }
