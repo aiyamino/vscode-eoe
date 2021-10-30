@@ -104,7 +104,7 @@ export default class Asset {
 
     public getButtonJsURI(): vscode.Uri {
         return vscode.Uri.file(path.join(this.context.extensionPath,
-            "src",
+            "media",
             "button.js"
         ));
     }
