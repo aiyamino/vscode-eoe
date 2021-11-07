@@ -11,10 +11,15 @@ export interface ASoulTag {
     tag_id: number
     tag_title: string
 }
+export interface ASoulOwner {
+    name: string
+    uid: number
+}
 export interface ASoulGetRandomPicResult {
     img: string,
     dy_url: string,
-    tags: ASoulTag[]
+    tags: ASoulTag[],
+    owner: ASoulOwner
 }
 export type ImageSource = ASoulGetRandomPicResult | vscode.Uri | string
 export function isASoulGetRandomPicResult(source: ImageSource): source is ASoulGetRandomPicResult {

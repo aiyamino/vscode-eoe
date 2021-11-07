@@ -73,6 +73,7 @@ export class ReminderView {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta name="image-source" content="${imagePath.dy_url}">
+            <meta name="author-homepage" content="https://asoul.cloud/space/${imagePath.owner.uid}">
             <script type="module" src="${toolkitUri}"></script>
             <script type="module" src="${buttonJsUri}"></script>
             <title>A-SOUL</title>
@@ -82,7 +83,7 @@ export class ReminderView {
         <div style="margin-bottom: 8px;">
             <vscode-button id="refresh">再来一张!</vscode-button>&nbsp;
             <vscode-button id="source">来源…</vscode-button>&nbsp;
-            <vscode-button id="more">更多…</vscode-button>
+            <vscode-button id="more">更多 @${imagePath.owner.name} 的作品…</vscode-button>
         </div>
         <div/>
         <div><img src="${imagePath.img}"></div>
