@@ -16,7 +16,17 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 * `asoul.reminderViewIntervalInMinutes`: 展示提醒页面的时间间隔（分钟）。(默认值为**60**)
 * `asoul.title`: 提示文字。 (默认值为**亲爱的一个魂儿，代码写久了，该休息啦~**)
 * `asoul.titleAva`, `asoul.titleBella`, `asoul.titleCarol`, `asoul.titleDiana`, `asoul.titleEileen`: 五位成员的专属提示文字。在图片的Tag唯一包含这位成员时，会优先显示这里设定的成员专属提示。
-* `asoul.type`: url: 自定义网图; random: 来自[这里](https://asoul.cloud/pic)的随机二创; default: 内置图(A-SOUL成员的官方海报); niuniu: 牛牛鼓励师; cao: 阿草鼓励师。(默认值为**random**)
+* `asoul.type`: 见下表所示
+
+| 选项 | 名称 | 描述 |
+| -- | -- | -- |
+| url | 自定义图片 | 参见`asoul.customImages`的配置 |
+| random | 二创 | 来自[这里](https://asoul.cloud/pic)的随机二创 |
+| default | 内置图 | A-SOUL成员的官方海报 |
+| niuniu | 牛牛鼓励师 | 勇敢牛牛，不怕困难！|
+| cao | 阿草鼓励师 | 狂暴鸿儒 |
+| mix | 混合模式 | 90%概率弹出二创，5%概率弹出阿草，5%概率弹出勇敢牛牛|
+
 * `asoul.customImages`: 配置自定义网图对应的图片数组（需要搭配asoul.type为url）
 * `asoul.notification`: 是否打开防社死模式。在防社死模式下，每到设定的时间后，不会直接弹出图片窗口，而是会在右下角显示消息提醒（数秒后消失），手动点击后才会打开页面。(默认值为**true**)
 ![usage](images/notification.png)
