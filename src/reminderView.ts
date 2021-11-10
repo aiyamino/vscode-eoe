@@ -23,6 +23,8 @@ export class ReminderView {
             if (imagePath.path.includes('niuniu')) {
                 title = asset.getTitle();
                 title += " 勇敢牛牛，不怕困难！"
+            }else if (imagePath.path.includes('cao')) {
+                title = asset.getCaoTitle();
             } else {
                 const name = asset.getNameFromUri(imagePath);
                 title = asset.getNamedTitle(name);

@@ -37,6 +37,7 @@ export default class Asset {
     public readonly TYPE_DEFAULT = 'default';
     public readonly TYPE_CAO = "cao";
     public readonly TYPE_NIUNIU = "niuniu";
+    public readonly TYPE_MIX = "mix";
 
     public readonly NAME_AVA = 'ava';
     public readonly NAME_BELLA = 'bella';
@@ -60,6 +61,16 @@ export default class Asset {
             images = this.getCaoImages();
         } else if (type === this.TYPE_NIUNIU) {
             images = this.getNiuImages();
+        } else if (type === this.TYPE_MIX) {
+            // generate random number from 0 to 100
+            let random = Math.floor(Math.random() * 100);
+            if (random < 90) {
+                images = await this.getRandomImages();
+            } else if (random < 95) {
+                images = this.getCaoImages();
+            } else {
+                images = this.getNiuImages();
+            }
         } else {
             images = this.getDefaultImages();
         }
@@ -69,7 +80,7 @@ export default class Asset {
         }
         // maybe offline
         if (images.length === 0) {
-        images = this.getDefaultImages();
+            images = this.getDefaultImages();
         }
         const image = this.getRandomOne(images);
 
@@ -223,6 +234,14 @@ export default class Asset {
             title = Utility.getConfiguration().get<string>('titleEileen', '');
         }
 
+        if (title === ""){
+            title = Utility.getConfiguration().get<string>('title', '');
+        }
+        return title;
+    }
+
+    public getCaoTitle(): string {
+        let title = Utility.getConfiguration().get<string>('titleOfficial', '');
         if (title === ""){
             title = Utility.getConfiguration().get<string>('title', '');
         }
