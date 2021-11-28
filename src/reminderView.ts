@@ -12,7 +12,7 @@ export class ReminderView {
 
     public static async show(context: vscode.ExtensionContext) {
         let asset: Asset = new Asset(context);
-
+        let panel_initialized = false;
         if (!this.panel){
             this.panel = vscode.window.createWebviewPanel("asoul", "A-SOUL", vscode.ViewColumn.Two, {
                 enableScripts: true,
@@ -21,6 +21,7 @@ export class ReminderView {
             this.panel.onDidDispose(() => {
                 this.panel = undefined;
             });
+            panel_initialized = true;
         }
 
         const imagePath = await asset.getImageUri();
@@ -47,19 +48,20 @@ export class ReminderView {
         }
 
         this.panel.reveal();
-        this.panel.webview.onDidReceiveMessage(
-            (message: ButtonMessage) =>{
-                switch(message.command) {
-                    case "refresh":
-                        vscode.commands.executeCommand('asoul.showReminderView')
-                        this.panel?.dispose()
-                        break
-                    case "open":
-                        vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(message.args));
-                        break
+        if (panel_initialized) {
+            this.panel.webview.onDidReceiveMessage(
+                (message: ButtonMessage) =>{
+                    switch(message.command) {
+                        case "refresh":
+                            ReminderView.show(context);
+                            break
+                        case "open":
+                            vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(message.args));
+                            break
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     protected static generateOnlineHtml(imagePath: ASoulGetRandomPicResult, title: string, toolkitUri: vscode.Uri, buttonJsUri: vscode.Uri) {
@@ -104,5 +106,3 @@ export class ReminderView {
         return html;
     }
 }
-
-// <div><h2><a href="${imagePath.dy_url}">来源…</a>  <a href="https://asoul.cloud/pic">更多…</a></h2></div>

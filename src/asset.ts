@@ -137,18 +137,15 @@ export default class Asset {
 
     public getWebviewToolkitURI(): vscode.Uri {
         return vscode.Uri.file(path.join(this.context.extensionPath,
-            "node_modules",
-            "@vscode",
-            "webview-ui-toolkit",
             "dist",
-            "toolkit.js"
+            "toolkit.min.js"
         ));
     }
 
     public getButtonJsURI(): vscode.Uri {
         return vscode.Uri.file(path.join(this.context.extensionPath,
-            "media",
-            "button.js"
+            "dist",
+            "button.min.js"
         ));
     }
 

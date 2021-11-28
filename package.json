@@ -4,7 +4,7 @@
     "description": "写代码不再孤单，有A-SOUL与你同在",
     "version": "0.5.0",
     "publisher": "as042971",
-    "icon": "logo.png",
+    "icon": "images/logo.png",
     "engines": {
         "vscode": "^1.61.0"
     },
@@ -30,7 +30,7 @@
         "onCommand:asoul.openGallery",
         "onStartupFinished"
     ],
-    "main": "./out/extension",
+    "main": "./dist/extension.min.js",
     "contributes": {
         "commands": [
             {
@@ -105,7 +105,7 @@
                         "官方海报",
                         "勇敢牛牛，不怕困难！",
                         "狂暴鸿儒",
-                        "测手气"
+                        "测手气（混合模式，90%概率随机二创，5%概率牛牛鼓励师，5%概率阿草鼓励师）"
                     ],
                     "description": "图片来源"
                 },
@@ -115,7 +115,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "用户设置图片地址（请将图片来源设置为 url）"
+                    "markdownDescription": "用户设置图片地址（请将`#asoul.type#`设置为`url`以使用此配置）"
                 },
                 "asoul.notification": {
                     "type": "boolean",
@@ -126,18 +126,28 @@
         }
     },
     "scripts": {
-        "vscode:prepublish": "npm run compile",
+        "copy": "cpx ./node_modules/@vscode/webview-ui-toolkit/dist/toolkit.min.js ./dist/",
+        "script-base": "esbuild ./media/button.js --outfile=dist/button.min.js",
+        "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.min.js --external:vscode --format=cjs --platform=node",
+
+        "vscode:prepublish": "npm run copy && npm run esbuild-base -- --minify && npm run script-base -- --minify",
+        "esbuild": "npm run copy && npm run esbuild-base -- --sourcemap  && npm run script-base -- --sourcemap",
+        "esbuild-watch": "npm run copy && npm run esbuild-base -- --sourcemap --watch && npm run script-base -- --sourcemap --watch",
+
+        "test-compile": "tsc -p ./",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./"
     },
     "dependencies": {
-        "@vscode/webview-ui-toolkit": "^0.8.4",
         "axios": ">=0.24.0"
     },
     "devDependencies": {
         "@types/mocha": "^9.0.0",
         "@types/node": "^16.11.10",
         "@types/vscode": "^1.61.0",
+        "@vscode/webview-ui-toolkit": "^0.8.4",
+        "cpx": "^1.5.0",
+        "esbuild": "^0.14.0",
         "tslint": "^5.20.1",
         "typescript": "^4.5.2"
     }
