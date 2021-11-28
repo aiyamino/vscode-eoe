@@ -12,6 +12,15 @@ export class ReminderView {
 
     public static async show(context: vscode.ExtensionContext) {
         let asset: Asset = new Asset(context);
+
+        if (Asset.isWebContext(context)) {
+            let images = await asset.getRandomImages();
+            if (images.length != 0) {
+                vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(images[0].dy_url));
+            }
+            return;
+        }
+
         let panel_initialized = false;
         if (!this.panel){
             this.panel = vscode.window.createWebviewPanel("asoul", "A-SOUL", vscode.ViewColumn.Two, {

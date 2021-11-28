@@ -146,7 +146,7 @@ export default class Asset {
         return Utility.getConfiguration().get<string[]>('customImages', []);
     }
 
-    protected async getRandomImages() {
+    public async getRandomImages() {
         try {
             const response = await axios.get<ASoulGetRandomPicResult>(
                 "https://api.asoul.cloud:8000/getRandomPic",
@@ -238,5 +238,9 @@ export default class Asset {
             title = Utility.getConfiguration().get<string>('title', '');
         }
         return title;
+    }
+
+    public static isWebContext(context: vscode.ExtensionContext): boolean {
+        return context.extensionPath.startsWith('https://');
     }
 }

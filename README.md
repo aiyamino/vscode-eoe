@@ -5,7 +5,7 @@
 Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
 注意：本程序包已适配 https://vscode.dev/, 欢迎直接在线体验。
-（然而，由于B站图片不支持跨站访问，目前可在线使用的模式只有牛牛鼓励师模式）
+（然而，由于B站图片不支持跨站访问，目前统一采用弹出新标签模式）
 
 ## 使用
 
