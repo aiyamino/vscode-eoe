@@ -27,28 +27,19 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 | cao | 阿草鼓励师 | 狂暴鸿儒 |
 | mix | 混合模式 | 90%概率弹出二创，5%概率弹出阿草，5%概率弹出勇敢牛牛|
 
-* `asoul.customImages`: 配置自定义网图对应的图片数组（需要搭配asoul.type为url）
+* `asoul.customImages`: 配置自定义网图对应的图片数组（需要搭配asoul.type为url，可使用[imgurl](https://imgurl.org/)等图床上传自定义图片）
 * `asoul.notification`: 是否打开防社死模式。在防社死模式下，每到设定的时间后，不会直接弹出图片窗口，而是会在右下角显示消息提醒（数秒后消失），手动点击后才会打开页面。(默认值为**true**)
 ![usage](images/notification.jpg)
 
-如下例子，使用自定义网图：
-
-```json
-"asoul.type": "url",
-"asoul.customImages": [
-    "http://XXX.jpg"
-]
-```
-可使用[imgurl](https://imgurl.org/)等图床上传自定义图片
-
 ## 二创画廊
 
-本插件展示的所有二创作品均来自 <https://asoul.cloud/pic> 的整理（同时，特别鸣谢网站方提供的API）。
+本插件展示的所有二创作品均来自 [A-SOUL Fans Art - 一个魂的二创](https://asoul.cloud/pic) 的整理（同时，特别鸣谢网站方提供的API）。
 所有图片的版权均归原作者所有。
 可通过按 `F1`, 然后输入 `asoul: 打开二创画廊 (默认浏览器)`来打开此网站
 
 ## 友情链接
 
+- [A-SOUL Fans Art - 一个魂的二创](https://asoul.cloud/pic)
 - [VSCode插件：A-SOUL 提醒小助手](https://marketplace.visualstudio.com/items?itemName=JiangYan.asoul-notifications&ssr=false#overview)
 - [IDEA插件：A-SOUL鼓励师](https://github.com/cnsky1103/A-SOUL-Reminder)
 - [Windows 10/11 版提醒小助手](https://github.com/skykeyjoker/A-Soul-Notification)

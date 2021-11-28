@@ -28,7 +28,7 @@
     "activationEvents": [
         "onCommand:asoul.showReminderView",
         "onCommand:asoul.openGallery",
-        "*"
+        "onStartupFinished"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -112,7 +112,10 @@
                 "asoul.customImages": {
                     "type": "array",
                     "default": [],
-                    "description": "用户设置图片地址"
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "用户设置图片地址（请将图片来源设置为 url）"
                 },
                 "asoul.notification": {
                     "type": "boolean",
