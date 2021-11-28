@@ -240,7 +240,7 @@ export default class Asset {
         return title;
     }
 
-    public static isWebContext(context: vscode.ExtensionContext): boolean {
-        return context.extensionPath.startsWith('https://');
+    public static isWebContext(): boolean {
+        return vscode.env.appHost != 'desktop';
     }
 }

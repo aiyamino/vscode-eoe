@@ -13,7 +13,7 @@ export class ReminderView {
     public static async show(context: vscode.ExtensionContext) {
         let asset: Asset = new Asset(context);
 
-        if (Asset.isWebContext(context)) {
+        if (Asset.isWebContext()) {
             let images = await asset.getRandomImages();
             if (images.length != 0) {
                 vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(images[0].dy_url));

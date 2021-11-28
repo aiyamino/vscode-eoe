@@ -16,7 +16,7 @@ export class Scheduler {
         this.timer = setInterval(() => {
             const notification = Utility.getConfiguration().get<boolean>('notification', false);
 
-            if (notification || Asset.isWebContext(this.context)) {
+            if (notification || Asset.isWebContext()) {
                 const title = Utility.getConfiguration().get<string>('title', '');
                 vscode.window.showInformationMessage(title, "放松一下!").then((val) => {
                     if (val) {
