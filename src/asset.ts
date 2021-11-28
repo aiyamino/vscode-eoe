@@ -21,10 +21,18 @@ export interface ASoulGetRandomPicResult {
     tags: ASoulTag[],
     owner: ASoulOwner
 }
-export type ImageSource = ASoulGetRandomPicResult | vscode.Uri | string
+export interface ASoulDefaultPicResult {
+    img: string,
+    tag: string
+}
+export type ImageSource = ASoulGetRandomPicResult | ASoulDefaultPicResult | vscode.Uri | string
 export function isASoulGetRandomPicResult(source: ImageSource): source is ASoulGetRandomPicResult {
     const result = source as ASoulGetRandomPicResult;
     return result.img !== undefined && result.dy_url !== undefined && result.tags !== undefined;
+}
+export function isASoulDefaultPicResult(source: ImageSource): source is ASoulDefaultPicResult {
+    const result = source as ASoulDefaultPicResult;
+    return result.img !== undefined && result.tag !== undefined;
 }
 export function isUri(source: ImageSource): source is vscode.Uri {
     const result = source as vscode.Uri;
@@ -92,20 +100,39 @@ export default class Asset {
         return images[n];
     }
 
-    protected getDefaultImages(): vscode.Uri[] {
-        const dirPath = this.getDefaultAsoulImagePath();
-        const files = this.readPathImage(dirPath);
-        return files;
+    protected getDefaultImages(): ASoulDefaultPicResult[] {
+        return [
+            {img: 'https://i0.hdslb.com/bfs/album/e50ff4910f8e9f50638e5d00692736fe5382cd5f.jpg', tag: 'ava'},
+            {img: 'https://i0.hdslb.com/bfs/album/5b8478af1cd42c4121195d6c970ef895e872c2d4.jpg', tag: 'bella'},
+            {img: 'https://i0.hdslb.com/bfs/album/6b0225adb6da22810eab0343d04b54607a4cadef.jpg', tag: 'carol'},
+            {img: 'https://i0.hdslb.com/bfs/album/49f2c78bf7153326f2fcd80b589111cb4054d053.jpg', tag: 'diana'},
+            {img: 'https://i0.hdslb.com/bfs/album/052bad0f2525b44f5d00afb764d8fcae19798520.jpg', tag: 'eileen'}
+        ]
     }
 
-    protected getCaoImages(): vscode.Uri[] {
-        const dirPath = this.getDefaultCaoImagePath();
-        const files = this.readPathImage(dirPath);
-        return files;
+    protected getCaoImages(): ASoulDefaultPicResult[] {
+        let uris = [
+            'https://i0.hdslb.com/bfs/album/57ad5c6ac6e924066339065b0afb852f53da451d.png',
+            'https://i0.hdslb.com/bfs/album/64d0c8eb810e17cf3e1194db771e82a75d484cad.png',
+
+            'https://i0.hdslb.com/bfs/album/b43d6f55809060f4015f85028bcc04267c90b07f.gif',
+            'https://i0.hdslb.com/bfs/album/6d6682adb6e6691e9e4fc1e16f9946a43031d3ae.gif',
+            'https://i0.hdslb.com/bfs/album/06e0cf94f815dcd503bc7a06af66601545fada3b.gif',
+            'https://i0.hdslb.com/bfs/album/d5d2fb54828ab5c582fdf4d362ea3ef67f511932.gif',
+            'https://i0.hdslb.com/bfs/album/f7e3edf04f30e8bce3e5b1bb164aa2e363e18761.gif',
+            'https://i0.hdslb.com/bfs/album/f41087048f5df564ff223a3b88f3ba12a6446962.gif',
+            'https://i0.hdslb.com/bfs/album/91c27b71a9b65d3e344f11dcc1103633ed07beab.gif',
+            'https://i0.hdslb.com/bfs/album/dfd12760220b806bda6d4cffb745eef711ce768a.gif'
+        ];
+        let results = [] as ASoulDefaultPicResult[]
+        uris.forEach((uri, _, __) => {
+            results.push({img: uri, tag: 'cao'});
+        })
+        return results;
     }
 
-    protected getNiuImages(): vscode.Uri[] {
-        return [vscode.Uri.file(path.join(this.context.extensionPath, 'images/niuniu.gif')).with({ scheme: 'vscode-resource' })]
+    protected getNiuImages(): ASoulDefaultPicResult[] {
+        return [{ img: 'https://s3.bmp.ovh/imgs/2021/11/cd64f50b66155cb5.gif', tag: 'niuniu' }];
     }
 
     public getWebviewToolkitURI(): vscode.Uri {
@@ -125,7 +152,6 @@ export default class Asset {
         ));
     }
 
-
     protected readPathImage(dirPath: string): vscode.Uri[] {
         let files: vscode.Uri[] = [];
         const result = fs.readdirSync(dirPath);
@@ -136,14 +162,6 @@ export default class Asset {
             }
         });
         return files;
-    }
-
-    protected getDefaultAsoulImagePath() {
-        return path.join(this.context.extensionPath, 'images/asoul');
-    }
-
-    protected getDefaultCaoImagePath() {
-        return path.join(this.context.extensionPath, 'images/cao');
     }
 
     protected getConfigType(): string {
@@ -158,7 +176,7 @@ export default class Asset {
         try {
             const response = await axios.get<ASoulGetRandomPicResult>(
                 "https://api.asoul.cloud:8000/getRandomPic",
-                {timeout: 8000});
+                { timeout: 8000 });
             return [response.data];
         } catch (err) {
             return [] as ASoulGetRandomPicResult[];
@@ -195,7 +213,7 @@ export default class Asset {
             }
         });
         if (tagsCnt != 1) {
-            name  = this.NAME_OTHERS;
+            name = this.NAME_OTHERS;
         }
         return name;
     }
@@ -234,7 +252,7 @@ export default class Asset {
             title = Utility.getConfiguration().get<string>('titleEileen', '');
         }
 
-        if (title === ""){
+        if (title === "") {
             title = Utility.getConfiguration().get<string>('title', '');
         }
         return title;
@@ -242,7 +260,7 @@ export default class Asset {
 
     public getCaoTitle(): string {
         let title = Utility.getConfiguration().get<string>('titleOfficial', '');
-        if (title === ""){
+        if (title === "") {
             title = Utility.getConfiguration().get<string>('title', '');
         }
         return title;

@@ -8,7 +8,7 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
 除了每过一小时会自动弹出提醒页面，也可以按 `F1`, 然后输入 `asoul: 打开提醒页面`来打开提醒页面
 
-![usage](images/usage.png)
+![usage](images/usage.jpg)
 (展示用图片来自[这里](https://t.bilibili.com/580623627884440502))
 
 ## 配置
@@ -22,14 +22,14 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 | -- | -- | -- |
 | url | 自定义图片 | 参见`asoul.customImages`的配置 |
 | random | 二创 | 来自[这里](https://asoul.cloud/pic)的随机二创 |
-| default | 内置图 | A-SOUL成员的官方海报 |
-| niuniu | 牛牛鼓励师 | 勇敢牛牛，不怕困难！|
+| default | 官方图 | A-SOUL成员的官方海报 |
+| niuniu | 牛牛鼓励师 | 勇敢牛牛，不怕困难！ |
 | cao | 阿草鼓励师 | 狂暴鸿儒 |
 | mix | 混合模式 | 90%概率弹出二创，5%概率弹出阿草，5%概率弹出勇敢牛牛|
 
 * `asoul.customImages`: 配置自定义网图对应的图片数组（需要搭配asoul.type为url）
 * `asoul.notification`: 是否打开防社死模式。在防社死模式下，每到设定的时间后，不会直接弹出图片窗口，而是会在右下角显示消息提醒（数秒后消失），手动点击后才会打开页面。(默认值为**true**)
-![usage](images/notification.png)
+![usage](images/notification.jpg)
 
 如下例子，使用自定义网图：
 
@@ -39,29 +39,17 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
     "http://XXX.jpg"
 ]
 ```
+可使用[imgurl](https://imgurl.org/)等图床上传自定义图片
 
 ## 二创画廊
 
-本插件展示的所有二创作品均来自 <https://asoul.cloud/pic> 的整理（同时，特别鸣谢网站方提供的API）
-
-所有图片的版权均归原作者所有
-
+本插件展示的所有二创作品均来自 <https://asoul.cloud/pic> 的整理（同时，特别鸣谢网站方提供的API）。
+所有图片的版权均归原作者所有。
 可通过按 `F1`, 然后输入 `asoul: 打开二创画廊 (默认浏览器)`来打开此网站
-
-## 使用自定义本地图片作为展示图片
-
-* vscode不允许读取外部文件路径，所以只能自己去替换插件内的图片。替换步骤如下：
-
-1、找到vscode插件安装的地方 (如mac 在~/.vscode/extensions/as042971.asoul-{version})
-
-2、替换images/asoul内图片
 
 ## 友情链接
 
-[VSCode插件：A-SOUL 提醒小助手](https://marketplace.visualstudio.com/items?itemName=JiangYan.asoul-notifications&ssr=false#overview)
-
-[IDEA插件：A-SOUL鼓励师](https://github.com/cnsky1103/A-SOUL-Reminder)
-
-[Windows 10/11 版提醒小助手](https://github.com/skykeyjoker/A-Soul-Notification)
-
-[Typora主题：Typora-theme-jiaran](https://github.com/q19980722/Typora-theme-jiaran)
+- [VSCode插件：A-SOUL 提醒小助手](https://marketplace.visualstudio.com/items?itemName=JiangYan.asoul-notifications&ssr=false#overview)
+- [IDEA插件：A-SOUL鼓励师](https://github.com/cnsky1103/A-SOUL-Reminder)
+- [Windows 10/11 版提醒小助手](https://github.com/skykeyjoker/A-Soul-Notification)
+- [Typora主题：Typora-theme-jiaran](https://github.com/q19980722/Typora-theme-jiaran)

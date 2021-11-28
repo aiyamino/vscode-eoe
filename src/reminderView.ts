@@ -1,7 +1,6 @@
 'use strict';
 import * as vscode from 'vscode';
-import Asset, { ASoulGetRandomPicResult } from './asset';
-import {ImageSource, isASoulGetRandomPicResult, isUri} from './asset'
+import Asset, {ASoulGetRandomPicResult, isASoulDefaultPicResult, isASoulGetRandomPicResult} from './asset';
 
 interface ButtonMessage {
     command: string,
@@ -14,25 +13,6 @@ export class ReminderView {
     public static async show(context: vscode.ExtensionContext) {
         let asset: Asset = new Asset(context);
 
-        const imagePath = await asset.getImageUri();
-        let title = "";
-        if (isASoulGetRandomPicResult(imagePath)) {
-            const name = asset.getName(imagePath.tags);
-            title = asset.getNamedTitle(name);
-        } else if (isUri(imagePath)) {
-            if (imagePath.path.includes('niuniu')) {
-                title = asset.getTitle();
-                title += " 勇敢牛牛，不怕困难！"
-            }else if (imagePath.path.includes('cao')) {
-                title = asset.getCaoTitle();
-            } else {
-                const name = asset.getNameFromUri(imagePath);
-                title = asset.getNamedTitle(name);
-            }
-        } else {
-            title = asset.getTitle();
-        }
-
         if (!this.panel){
             this.panel = vscode.window.createWebviewPanel("asoul", "A-SOUL", vscode.ViewColumn.Two, {
                 enableScripts: true,
@@ -43,12 +23,26 @@ export class ReminderView {
             });
         }
 
-
+        const imagePath = await asset.getImageUri();
         if (isASoulGetRandomPicResult(imagePath)) {
+            const name = asset.getName(imagePath.tags);
+            let title = asset.getNamedTitle(name);
             let toolkitUri = this.panel.webview.asWebviewUri(asset.getWebviewToolkitURI());
             let buttonJsUri = this.panel.webview.asWebviewUri(asset.getButtonJsURI());
             this.panel.webview.html = this.generateOnlineHtml(imagePath, title, toolkitUri, buttonJsUri);
+        } else if (isASoulDefaultPicResult(imagePath)){
+            let title = "";
+            if (imagePath.tag === 'niuniu') {
+                title = asset.getTitle();
+                title += " 勇敢牛牛，不怕困难！"
+            } else if (imagePath.tag === 'cao') {
+                title = asset.getCaoTitle();
+            } else {
+                title = asset.getNamedTitle(imagePath.tag);
+            }
+            this.panel.webview.html = this.generateHtml(imagePath.img, title);
         } else {
+            let title = asset.getTitle();
             this.panel.webview.html = this.generateHtml(imagePath, title);
         }
 
@@ -94,7 +88,7 @@ export class ReminderView {
         return html;
     }
 
-    protected static generateHtml(imagePath: ImageSource, title: string): string {
+    protected static generateHtml(imagePath: string | vscode.Uri, title: string): string {
         let html = `<!DOCTYPE html>
         <html lang="en">
         <head>
