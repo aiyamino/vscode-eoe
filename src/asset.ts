@@ -1,11 +1,6 @@
 import * as vscode from 'vscode';
-import * as path from 'path';
-import * as fs from 'fs';
 import axios from 'axios'
 import { Utility } from './utility';
-
-// UNSAFE
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 export interface ASoulTag {
     tag_id: number
@@ -136,29 +131,11 @@ export default class Asset {
     }
 
     public getWebviewToolkitURI(): vscode.Uri {
-        return vscode.Uri.file(path.join(this.context.extensionPath,
-            "dist",
-            "toolkit.min.js"
-        ));
+        return vscode.Uri.file(this.context.extensionPath + "/dist/toolkit.min.js");
     }
 
     public getButtonJsURI(): vscode.Uri {
-        return vscode.Uri.file(path.join(this.context.extensionPath,
-            "dist",
-            "button.min.js"
-        ));
-    }
-
-    protected readPathImage(dirPath: string): vscode.Uri[] {
-        let files: vscode.Uri[] = [];
-        const result = fs.readdirSync(dirPath);
-        result.forEach(function (item, index) {
-            const stat = fs.lstatSync(path.join(dirPath, item));
-            if (stat.isFile()) {
-                files.push(vscode.Uri.file(path.join(dirPath, item)).with({ scheme: 'vscode-resource' }));
-            }
-        });
-        return files;
+        return vscode.Uri.file(this.context.extensionPath + "/dist/button.min.js");
     }
 
     protected getConfigType(): string {

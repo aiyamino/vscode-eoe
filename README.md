@@ -4,6 +4,8 @@
 
 Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
+注意：本程序包已适配 https://vscode.dev/, 欢迎直接在线体验。
+
 ## 使用
 
 除了每过一小时会自动弹出提醒页面，也可以按 `F1`, 然后输入 `asoul: 打开提醒页面`来打开提醒页面
