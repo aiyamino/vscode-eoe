@@ -14,6 +14,13 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.commands.registerCommand('asoul.openGallery', () => {
         vscode.commands.executeCommand('vscode.open', vscode.Uri.parse('https://asoul.cloud/pic'));
     }));
+
+    vscode.workspace.onDidChangeConfiguration((ds) => {
+        if (ds.affectsConfiguration("asoul.reminderViewIntervalInMinutes")) {
+            scheduler.stop();
+            scheduler.start();
+        }
+    });
 }
 
 export function deactivate() {

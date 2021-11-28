@@ -4,11 +4,14 @@ import { ReminderView } from './reminderView';
 import { Utility } from './utility';
 
 export class Scheduler {
+    private timer : NodeJS.Timeout | null = null
+
     public constructor(private context: vscode.ExtensionContext) {
     }
 
     public start() {
-        setInterval(() => {
+        if (this.timer != null) return;
+        this.timer = setInterval(() => {
             const notification = Utility.getConfiguration().get<boolean>('notification', false);
 
             if (notification) {
@@ -22,5 +25,11 @@ export class Scheduler {
                 ReminderView.show(this.context);
             }
         }, 1000 * 60 * Utility.getConfiguration().get<number>('reminderViewIntervalInMinutes', 60));
+    }
+
+    public stop() {
+        if (this.timer == null) return;
+        clearInterval(this.timer);
+        this.timer = null;
     }
 }
