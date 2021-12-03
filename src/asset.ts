@@ -49,9 +49,6 @@ export default class Asset {
     public readonly NAME_EILEEN = 'eileen';
     public readonly NAME_OTHERS = 'others';
 
-    public constructor(private context: vscode.ExtensionContext) {
-    }
-
     public async getImageUri(): Promise<ImageSource> {
         const type: string = this.getConfigType();
         let images: ImageSource[];
@@ -128,14 +125,6 @@ export default class Asset {
 
     protected getNiuImages(): ASoulDefaultPicResult[] {
         return [{ img: 'https://s3.bmp.ovh/imgs/2021/11/cd64f50b66155cb5.gif', tag: 'niuniu' }];
-    }
-
-    public getWebviewToolkitURI(): vscode.Uri {
-        return vscode.Uri.file(this.context.extensionPath + "/dist/toolkit.min.js");
-    }
-
-    public getButtonJsURI(): vscode.Uri {
-        return vscode.Uri.file(this.context.extensionPath + "/dist/button.min.js");
     }
 
     protected getConfigType(): string {

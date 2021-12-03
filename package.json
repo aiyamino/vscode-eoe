@@ -2,7 +2,7 @@
     "name": "asoul",
     "displayName": "A-SOUL 鼓励师",
     "description": "写代码不再孤单，有A-SOUL与你同在",
-    "version": "0.5.3",
+    "version": "0.5.4",
     "publisher": "as042971",
     "icon": "images/logo.png",
     "engines": {
@@ -126,27 +126,21 @@
         }
     },
     "scripts": {
-        "copy": "cpx ./node_modules/@vscode/webview-ui-toolkit/dist/toolkit.min.js ./dist/",
-        "script-base": "esbuild ./media/button.js --outfile=dist/button.min.js",
         "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.min.js --external:vscode --format=cjs --platform=node",
-
-        "vscode:prepublish": "npm run copy && npm run esbuild-base -- --minify && npm run script-base -- --minify",
-        "esbuild": "npm run copy && npm run esbuild-base -- --sourcemap  && npm run script-base -- --sourcemap",
-        "esbuild-watch": "npm run copy && npm run esbuild-base -- --sourcemap --watch && npm run script-base -- --sourcemap --watch",
-
+        "vscode:prepublish": "npm run esbuild-base -- --minify",
+        "esbuild": "npm run esbuild-base -- --sourcemap",
+        "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+        "open-in-browser": "vscode-test-web --extensionDevelopmentPath=. .",
         "test-compile": "tsc -p ./",
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./"
-    },
-    "dependencies": {
-        "axios": ">=0.24.0"
     },
     "devDependencies": {
         "@types/mocha": "^9.0.0",
         "@types/node": "^16.11.10",
         "@types/vscode": "^1.61.0",
-        "@vscode/webview-ui-toolkit": "^0.8.4",
-        "cpx": "^1.5.0",
+        "@vscode/test-web": "^0.0.15",
+        "axios": ">=0.24.0",
         "esbuild": "^0.14.0",
         "tslint": "^5.20.1",
         "typescript": "^4.5.2"

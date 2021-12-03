@@ -11,15 +11,7 @@ export class ReminderView {
     private static panel: vscode.WebviewPanel | undefined;
 
     public static async show(context: vscode.ExtensionContext) {
-        let asset: Asset = new Asset(context);
-
-        if (Asset.isWebContext()) {
-            let images = await asset.getRandomImages();
-            if (images.length != 0) {
-                vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(images[0].dy_url));
-            }
-            return;
-        }
+        let asset: Asset = new Asset();
 
         let panel_initialized = false;
         if (!this.panel){
@@ -37,9 +29,10 @@ export class ReminderView {
         if (isASoulGetRandomPicResult(imagePath)) {
             const name = asset.getName(imagePath.tags);
             let title = asset.getNamedTitle(name);
-            let toolkitUri = this.panel.webview.asWebviewUri(asset.getWebviewToolkitURI());
-            let buttonJsUri = this.panel.webview.asWebviewUri(asset.getButtonJsURI());
-            this.panel.webview.html = this.generateOnlineHtml(imagePath, title, toolkitUri, buttonJsUri);
+            if (Asset.isWebContext()) {
+                imagePath.img = 'https://images.weserv.nl/?url=' + imagePath.img;
+            }
+            this.panel.webview.html = this.generateOnlineHtml(imagePath, title);
         } else if (isASoulDefaultPicResult(imagePath)){
             let title = "";
             if (imagePath.tag === 'niuniu') {
@@ -50,10 +43,17 @@ export class ReminderView {
             } else {
                 title = asset.getNamedTitle(imagePath.tag);
             }
+            if (Asset.isWebContext()) {
+                imagePath.img = 'https://images.weserv.nl/?url=' + imagePath.img;
+            }
             this.panel.webview.html = this.generateHtml(imagePath.img, title);
         } else {
             let title = asset.getTitle();
-            this.panel.webview.html = this.generateHtml(imagePath, title);
+            if (Asset.isWebContext()) {
+                this.panel.webview.html = this.generateHtml('https://images.weserv.nl/?url=' + imagePath, title);
+            } else {
+                this.panel.webview.html = this.generateHtml(imagePath, title);
+            }
         }
 
         this.panel.reveal();
@@ -73,7 +73,7 @@ export class ReminderView {
         }
     }
 
-    protected static generateOnlineHtml(imagePath: ASoulGetRandomPicResult, title: string, toolkitUri: vscode.Uri, buttonJsUri: vscode.Uri) {
+    protected static generateOnlineHtml(imagePath: ASoulGetRandomPicResult, title: string) {
         let html = `<!DOCTYPE html>
         <html lang="en">
         <head>
@@ -81,8 +81,26 @@ export class ReminderView {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta name="image-source" content="${imagePath.dy_url}">
             <meta name="author-homepage" content="https://asoul.cloud/space/${imagePath.owner.uid}">
-            <script type="module" src="${toolkitUri}"></script>
-            <script type="module" src="${buttonJsUri}"></script>
+            <script type="module" src="https://cdn.jsdelivr.net/npm/@vscode/webview-ui-toolkit/dist/toolkit.min.js"></script>
+            <script>
+                const vscode = acquireVsCodeApi();
+
+                window.addEventListener("load", main);
+
+                function main() {
+                    const imageSource = document.getElementsByTagName('meta')['image-source'].content;
+                    const authorHomepage = document.getElementsByTagName('meta')['author-homepage'].content;
+
+                    const refreshButton = document.getElementById("refresh");
+                    refreshButton.addEventListener("click", () => vscode.postMessage({command: "refresh", args: ""}));
+
+                    const sourceButton = document.getElementById("source");
+                    sourceButton.addEventListener("click", () => vscode.postMessage({command: "open", args: imageSource}));
+
+                    const moreButton = document.getElementById("more");
+                    moreButton.addEventListener("click", () => vscode.postMessage({command: "open", args: authorHomepage}))
+                }
+            </script>
             <title>A-SOUL</title>
         </head>
         <body>

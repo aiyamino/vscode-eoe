@@ -1,11 +1,17 @@
 # A-SOUL鼓励师
 
+[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/AS042971.asoul)](https://marketplace.visualstudio.com/items?itemName=AS042971.asoul)
+[![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/AS042971.asoul)](https://marketplace.visualstudio.com/items?AS042971.asoul)
+[![Preview in vscode.dev](https://img.shields.io/badge/preview%20in-vscode.dev-blue)](https://vscode.dev)
+
+[![GitHub top language](https://img.shields.io/github/languages/top/AS042971/vscode-asoul)](https://github.com/AS042971/vscode-asoul)
+[![GitHub](https://img.shields.io/github/license/AS042971/vscode-asoul)](https://github.com/AS042971/vscode-asoul/blob/master/LICENSE)
+
 在 VS Code 中连续写代码一小时（时间可配置），会有A-SOUL成员提醒你该休息啦~
 
 Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
-注意：本程序包已适配 https://vscode.dev/, 欢迎直接在线体验。
-（然而，由于B站图片不支持跨站访问，目前统一采用弹出新标签模式）
+注意：本程序包已完美适配 https://vscode.dev/, 欢迎直接在线体验。
 
 ## 使用
 
