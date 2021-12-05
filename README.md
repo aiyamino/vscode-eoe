@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontents.com/AS042971/vscode-asoul/master/images/logoHD.jpg" alt="A-SOUL鼓励师" width="256"/>
+<img src="https://raw.githubusercontents.com/AS042971/vscode-asoul/master/images/logoHD.png" alt="A-SOUL鼓励师" width="256"/>
 
 # A-SOUL 鼓励师
 
