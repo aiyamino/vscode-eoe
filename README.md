@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontents.com/AS042971/vscode-asoul/master/images/logoHD.png" alt="A-SOUL鼓励师" width="256"/>
+<img src="https://raw.githubusercontents.com/AS042971/vscode-asoul/master/screenshot/logoHD.png" alt="A-SOUL鼓励师" width="256"/>
 
 # A-SOUL 鼓励师
 
@@ -27,7 +27,7 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
 除了每过一小时会自动弹出提醒页面，也可以按 `F1`, 然后输入 `asoul: 打开提醒页面`来打开提醒页面
 
-![usage](https://raw.githubusercontents.com/AS042971/vscode-asoul/master/images/usage.jpg)
+![usage](https://raw.githubusercontents.com/AS042971/vscode-asoul/master/screenshot/usage.jpg)
 (展示用图片来自[这里](https://t.bilibili.com/580623627884440502))
 
 ## 配置
@@ -48,7 +48,7 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
 * `asoul.customImages`: 配置自定义网图对应的图片数组（需要搭配asoul.type为url，可使用[imgurl](https://imgurl.org/)等图床上传自定义图片）
 * `asoul.notification`: 是否打开防社死模式。在防社死模式下，每到设定的时间后，不会直接弹出图片窗口，而是会在右下角显示消息提醒（数秒后消失），手动点击后才会打开页面。(默认值为**true**)
-![notification](https://raw.githubusercontents.com/AS042971/vscode-asoul/master/images/notification.jpg)
+![notification](https://raw.githubusercontents.com/AS042971/vscode-asoul/master/screenshot/notification.jpg)
 
 ## 二创画廊
 

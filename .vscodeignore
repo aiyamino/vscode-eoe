@@ -1,8 +1,9 @@
-.vscode
+.vscode/
 out/
 src/
 media/
-node_modules
+screenshot/
+node_modules/
 .gitignore
 tsconfig.json
 vsc-extension-quickstart.md
