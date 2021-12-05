@@ -1,13 +1,23 @@
-# A-SOUL鼓励师
+<div align="center">
 
+<img src="https://raw.githubusercontents.com/AS042971/vscode-asoul/master/images/logoHD.jpg" alt="A-SOUL鼓励师" width="256"/>
+
+# A-SOUL 鼓励师
+
+在 VS Code 中连续写代码一小时（时间可配置），会有A-SOUL成员提醒你该休息啦~
+
+[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/v/AS042971.asoul)](https://marketplace.visualstudio.com/items?itemName=AS042971.asoul)
+[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/last-updated/AS042971.asoul)](https://marketplace.visualstudio.com/items?itemName=AS042971.asoul)
+[![Preview in vscode.dev](https://img.shields.io/badge/preview%20in-vscode.dev-blue)](https://vscode.dev)
+
+[![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/d/AS042971.asoul)](https://marketplace.visualstudio.com/items?itemName=AS042971.asoul)
 [![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/AS042971.asoul)](https://marketplace.visualstudio.com/items?itemName=AS042971.asoul)
 [![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/AS042971.asoul)](https://marketplace.visualstudio.com/items?AS042971.asoul)
-[![Preview in vscode.dev](https://img.shields.io/badge/preview%20in-vscode.dev-blue)](https://vscode.dev)
 
 [![GitHub top language](https://img.shields.io/github/languages/top/AS042971/vscode-asoul)](https://github.com/AS042971/vscode-asoul)
 [![GitHub](https://img.shields.io/github/license/AS042971/vscode-asoul)](https://github.com/AS042971/vscode-asoul/blob/master/LICENSE)
 
-在 VS Code 中连续写代码一小时（时间可配置），会有A-SOUL成员提醒你该休息啦~
+</div>
 
 Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
@@ -17,7 +27,7 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
 除了每过一小时会自动弹出提醒页面，也可以按 `F1`, 然后输入 `asoul: 打开提醒页面`来打开提醒页面
 
-![usage](images/usage.jpg)
+![usage](https://raw.githubusercontents.com/AS042971/vscode-asoul/master/images/usage.jpg)
 (展示用图片来自[这里](https://t.bilibili.com/580623627884440502))
 
 ## 配置
@@ -38,7 +48,7 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
 * `asoul.customImages`: 配置自定义网图对应的图片数组（需要搭配asoul.type为url，可使用[imgurl](https://imgurl.org/)等图床上传自定义图片）
 * `asoul.notification`: 是否打开防社死模式。在防社死模式下，每到设定的时间后，不会直接弹出图片窗口，而是会在右下角显示消息提醒（数秒后消失），手动点击后才会打开页面。(默认值为**true**)
-![usage](images/notification.jpg)
+![notification](https://raw.githubusercontents.com/AS042971/vscode-asoul/master/images/notification.jpg)
 
 ## 二创画廊
 
