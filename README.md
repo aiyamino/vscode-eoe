@@ -40,7 +40,7 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 | 选项 | 名称 | 描述 |
 | -- | -- | -- |
 | url | 自定义图片 | 参见`asoul.customImages`的配置 |
-| random | 二创 | 来自[这里](https://asoul.cloud/pic)的随机二创 |
+| random | 二创 | 来自[这里](https://asoulfanart.com/pic)的随机二创 |
 | default | 官方图 | A-SOUL成员的官方海报 |
 | niuniu | 牛牛鼓励师 | 勇敢牛牛，不怕困难！ |
 | cao | 阿草鼓励师 | 狂暴鸿儒 |
@@ -52,13 +52,13 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy)
 
 ## 二创画廊
 
-本插件展示的所有二创作品均来自 [A-SOUL Fans Art - 一个魂的二创](https://asoul.cloud/pic) 的整理（同时，特别鸣谢网站方提供的API）。
+本插件展示的所有二创作品均来自 [A-SOUL Fans Art - 一个魂的二创](https://asoulfanart.com/pic) 的整理（同时，特别鸣谢网站方提供的API）。
 所有图片的版权均归原作者所有。
 可通过按 `F1`, 然后输入 `asoul: 打开二创画廊 (默认浏览器)`来打开此网站
 
 ## 友情链接
 
-- [A-SOUL Fans Art - 一个魂的二创](https://asoul.cloud/pic)
+- [A-SOUL Fans Art - 一个魂的二创](https://asoulfanart.com/pic)
 - [VSCode插件：A-SOUL 提醒小助手](https://marketplace.visualstudio.com/items?itemName=JiangYan.asoul-notifications&ssr=false#overview)
 - [IDEA插件：A-SOUL鼓励师](https://github.com/cnsky1103/A-SOUL-Reminder)
 - [Windows 10/11 版提醒小助手](https://github.com/skykeyjoker/A-Soul-Notification)

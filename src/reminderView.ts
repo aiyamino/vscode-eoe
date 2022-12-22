@@ -80,7 +80,7 @@ export class ReminderView {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta name="image-source" content="${imagePath.dy_url}">
-            <meta name="author-homepage" content="https://asoul.cloud/space/${imagePath.owner.uid}">
+            <meta name="author-homepage" content="https://asoulfanart.com/space/${imagePath.owner.uid}">
             <script type="module" src="https://cdn.jsdelivr.net/npm/@vscode/webview-ui-toolkit/dist/toolkit.min.js"></script>
             <script>
                 const vscode = acquireVsCodeApi();

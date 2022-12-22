@@ -138,7 +138,7 @@ export default class Asset {
     public async getRandomImages() {
         try {
             const response = await axios.get<ASoulGetRandomPicResult>(
-                "https://api.asoul.cloud:8000/getRandomPic",
+                "https://api.asoulfanart.com:8000/getRandomPic",
                 { timeout: 8000 });
             return [response.data];
         } catch (err) {

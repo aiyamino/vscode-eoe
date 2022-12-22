@@ -12,7 +12,7 @@ export function activate(context: vscode.ExtensionContext) {
     }));
 
     context.subscriptions.push(vscode.commands.registerCommand('asoul.openGallery', () => {
-        vscode.commands.executeCommand('vscode.open', vscode.Uri.parse('https://asoul.cloud/pic'));
+        vscode.commands.executeCommand('vscode.open', vscode.Uri.parse('https://asoulfanart.com/pic'));
     }));
 
     vscode.workspace.onDidChangeConfiguration((ds) => {
