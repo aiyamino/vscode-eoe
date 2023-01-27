@@ -2,7 +2,7 @@
     "name": "asoul",
     "displayName": "A-SOUL 鼓励师",
     "description": "写代码不再孤单，有A-SOUL与你同在",
-    "version": "0.5.5",
+    "version": "0.5.6",
     "publisher": "as042971",
     "icon": "images/logo.png",
     "engines": {

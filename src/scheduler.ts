@@ -26,7 +26,7 @@ export class Scheduler {
             } else {
                 ReminderView.show(this.context);
             }
-        }, 1000 * 60 * Utility.getConfiguration().get<number>('reminderViewIntervalInMinutes', 60));
+        }, 1000 * 60 * Math.max(Utility.getConfiguration().get<number>('reminderViewIntervalInMinutes', 60), 1));
     }
 
     public stop() {
