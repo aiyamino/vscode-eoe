@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="https://raw.githubusercontents.com/AS042971/vscode-eoe/master/screenshot/logoHD.png" alt="EOE鼓励师" width="256"/>
-
 # EOE 鼓励师
 
 在 VS Code 中连续写代码一小时（时间可配置），会有EOE成员提醒你该休息啦~

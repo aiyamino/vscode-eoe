@@ -4,7 +4,7 @@ import { Utility } from './utility';
 
 export interface EOETag {
     tag_id: number;
-    tag_title: string;
+    tag_name: string;
 }
 export interface EOEOwner {
     name: string;
@@ -18,6 +18,7 @@ export interface EOEGetRandomPicResultContent {
     img_src: string;
     dynamic_url: string;
     dynamic_id: string;
+    tags: EOETag[];
 }
 export interface EOEGetRandomPicResultRaw {
     code: number;
@@ -110,12 +111,19 @@ export default class Asset {
             {img: 'https://i0.hdslb.com/bfs/new_dyn/c8f317eb530f02dd187520ad8773f1a31778026586.jpg', tag: 'minuo'},
             {img: 'https://i0.hdslb.com/bfs/new_dyn/c506da3d4d6d34c242c7ddd7ecf924741811071010.jpg', tag: 'yumo'},
             {img: 'https://i0.hdslb.com/bfs/new_dyn/b463d650abe6c104a0fe73bc87d5f7491795147802.jpg', tag: 'youen'}
-        ]
+        ];
     }
 
     protected getKuoYuImages(): EOEDefaultPicResult[] {
         let uris = [
-            'https://i0.hdslb.com/bfs/album/176830e500f7e00098d74a2613f56db7adaa15fb.jpg'
+            'https://i0.hdslb.com/bfs/album/8dd696fd0a9f8f23099c65152886cffc2f9f8973.gif',
+            'https://i0.hdslb.com/bfs/album/8dd696fd0a9f8f23099c65152886cffc2f9f8973.gif',
+            'https://i0.hdslb.com/bfs/album/916c6995e7a12aa18e4d2f90ae7012f2616253d0.gif',
+            'https://i0.hdslb.com/bfs/album/943a66871bf3db41d787f87d46d4f8ae3affade2.gif',
+            'https://i0.hdslb.com/bfs/album/24a84166b8eeef8aba7bf4b1afca276be87b99f7.gif',
+            'https://i0.hdslb.com/bfs/album/0e07d625a22cccd471019511e4b3442eb9e2c0da.gif',
+            'https://i0.hdslb.com/bfs/album/5b1f6e86d8021473f10280a0de31d7265f44448d.gif',
+            'https://i0.hdslb.com/bfs/album/e4b2ba5fc361653a706123056772fc899c9e49e6.gif'
         ];
         let results = [] as EOEDefaultPicResult[]
         uris.forEach((uri, _, __) => {
@@ -140,7 +148,7 @@ export default class Asset {
             let return_item = {} as EOEGetRandomPicResult;
             return_item.img = response.data.data.img_src;
             return_item.dy_url = response.data.data.dynamic_url;
-            return_item.tags = [];
+            return_item.tags = response.data.data.tags;
             console.log(return_item);
             return [return_item];
         } catch (err) {
@@ -156,23 +164,23 @@ export default class Asset {
         let tagsCnt = 0;
         let name = this.NAME_OTHERS;
         tags.forEach(element => {
-            if (element.tag_title.includes('莞儿') && name != this.NAME_WANER) {
+            if (element.tag_name.includes('莞儿') && name != this.NAME_WANER) {
                 tagsCnt++;
                 name = this.NAME_WANER;
             }
-            if (element.tag_title.includes('露早') && name != this.NAME_LUZAO) {
+            if (element.tag_name.includes('露早') && name != this.NAME_LUZAO) {
                 tagsCnt++;
                 name = this.NAME_LUZAO;
             }
-            if (element.tag_title.includes('米诺') && name != this.NAME_MINUO) {
+            if (element.tag_name.includes('米诺') && name != this.NAME_MINUO) {
                 tagsCnt++;
                 name = this.NAME_MINUO;
             }
-            if (element.tag_title.includes('虞莫') && name != this.NAME_YUMO) {
+            if (element.tag_name.includes('虞莫') && name != this.NAME_YUMO) {
                 tagsCnt++;
                 name = this.NAME_YUMO;
             }
-            if (element.tag_title.includes('柚恩') && name != this.NAME_YOUEN) {
+            if (element.tag_name.includes('柚恩') && name != this.NAME_YOUEN) {
                 tagsCnt++;
                 name = this.NAME_YOUEN;
             }
