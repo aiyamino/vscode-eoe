@@ -1,8 +1,8 @@
 {
-    "name": "asoul",
-    "displayName": "A-SOUL 鼓励师",
-    "description": "写代码不再孤单，有A-SOUL与你同在",
-    "version": "0.5.6",
+    "name": "eoe",
+    "displayName": "EOE 鼓励师",
+    "description": "写代码不再孤单，有EOE与你同在",
+    "version": "0.6.0",
     "publisher": "as042971",
     "icon": "images/logo.png",
     "engines": {
@@ -12,112 +12,110 @@
         "Other"
     ],
     "keywords": [
-        "A-SOUL",
+        "EOE",
         "提醒",
         "鼓励"
     ],
     "bugs": {
-        "url": "https://github.com/as042971/vscode-asoul/issues",
+        "url": "https://github.com/as042971/vscode-eoe/issues",
         "email": "as042971@outlook.com"
     },
-    "homepage": "https://github.com/as042971/vscode-asoul/blob/master/README.md",
+    "homepage": "https://github.com/as042971/vscode-eoe/blob/master/README.md",
     "repository": {
         "type": "git",
-        "url": "https://github.com/as042971/vscode-asoul.git"
+        "url": "https://github.com/as042971/vscode-eoe.git"
     },
     "activationEvents": [
-        "onCommand:asoul.showReminderView",
-        "onCommand:asoul.openGallery",
+        "onCommand:eoe.showReminderView",
+        "onCommand:eoe.openGallery",
         "onStartupFinished"
     ],
     "browser": "./dist/extension.min.js",
     "contributes": {
         "commands": [
             {
-                "command": "asoul.showReminderView",
+                "command": "eoe.showReminderView",
                 "title": "打开提醒页面",
-                "category": "asoul"
+                "category": "eoe"
             },
             {
-                "command": "asoul.openGallery",
+                "command": "eoe.openGallery",
                 "title": "打开二创画廊 (默认浏览器)",
-                "category": "asoul"
+                "category": "eoe"
             }
         ],
         "configuration": {
             "type": "object",
-            "title": "A-SOUL 鼓励师",
+            "title": "EOE 鼓励师",
             "properties": {
-                "asoul.reminderViewIntervalInMinutes": {
+                "eoe.reminderViewIntervalInMinutes": {
                     "type": "number",
                     "default": 60,
                     "description": "展示提醒页面的时间间隔（分钟）"
                 },
-                "asoul.title": {
+                "eoe.title": {
                     "type": "string",
-                    "default": "亲爱的一个魂儿，代码写久了，该休息啦~",
+                    "default": "亲爱的EOES，代码写久了，该休息啦~",
                     "description": "默认的页面内展示文字"
                 },
-                "asoul.titleAva": {
+                "eoe.titleWanEr": {
                     "type": "string",
-                    "default": "亲爱的顶碗人，代码写久了，该休息啦~ 要天天开心呀",
-                    "description": "🎸向晚🎸相关图片的页面内展示文字"
+                    "default": "亲爱的小莞熊，代码写久了，该休息啦~",
+                    "description": "🐻莞儿🐻相关图片的页面内展示文字"
                 },
-                "asoul.titleBella": {
+                "eoe.titleLuZao": {
                     "type": "string",
-                    "default": "亲爱的贝极星，代码写久了，该休息啦~ 要多多运动，身体健康吖",
-                    "description": "💃贝拉💃相关图片的页面内展示文字"
+                    "default": "亲爱的GOGO队，代码写久了，该休息啦~",
+                    "description": "🐰露早🐰相关图片的页面内展示文字"
                 },
-                "asoul.titleCarol": {
+                "eoe.titleMiNuo": {
                     "type": "string",
-                    "default": "亲爱的皇珈骑士，代码写久了，该休息啦~ 今天也是酷酷的捏",
-                    "description": "🎤珈乐🎤相关图片的页面内展示文字"
+                    "default": "亲爱的酷诺米，代码写久了，该休息啦~",
+                    "description": "😈米诺😈相关图片的页面内展示文字"
                 },
-                "asoul.titleDiana": {
+                "eoe.titleYuMo": {
                     "type": "string",
-                    "default": "亲爱的嘉心糖，代码写久了，该休息啦~ 要注意劳逸结合喔",
-                    "description": "🎀嘉然🎀相关图片的页面内展示文字"
+                    "default": "亲爱的美人虞，代码写久了，该休息啦~",
+                    "description": "🍆虞莫🍆相关图片的页面内展示文字"
                 },
-                "asoul.titleEileen": {
+                "eoe.titleYouEn": {
                     "type": "string",
-                    "default": "亲爱的奶淇琳，代码写久了，该休息啦~ 想要陪你双向奔赴",
-                    "description": "💄乃琳💄相关图片的页面内展示文字"
+                    "default": "亲爱的柚恩蜜，代码写久了，该休息啦~",
+                    "description": "🍯柚恩🍯相关图片的页面内展示文字"
                 },
-                "asoul.titleOfficial": {
+                "eoe.titleOfficial": {
                     "type": "string",
-                    "default": "小伙伴你好，代码写久了，该休息啦~ 练习太极强身健体",
-                    "description": "🦙阿草🦙相关图片的页面内展示文字"
+                    "default": "小伙伴你好，代码写久了，该休息啦~",
+                    "description": "🐛蛞蝓🐛相关图片的页面内展示文字"
                 },
-                "asoul.type": {
+                "eoe.type": {
                     "type": "string",
                     "default": "random",
                     "enum": [
                         "url",
                         "random",
                         "default",
-                        "niuniu",
-                        "cao",
+                        "kuoyu",
                         "mix"
                     ],
                     "enumDescriptions": [
                         "自定义网图",
                         "随机二创",
                         "官方海报",
-                        "勇敢牛牛，不怕困难！",
-                        "狂暴鸿儒",
-                        "测手气（混合模式，90%概率随机二创，5%概率牛牛鼓励师，5%概率阿草鼓励师）"
+                        "蛞蝓美图",
+                        "测手气（混合模式，90%概率随机二创，10%概率蛞蝓鼓励师）"
                     ],
                     "description": "图片来源"
                 },
-                "asoul.customImages": {
+                "eoe.customImages": {
                     "type": "array",
                     "default": [],
                     "items": {
                         "type": "string"
                     },
-                    "markdownDescription": "用户设置图片地址（请将`#asoul.type#`设置为`url`以使用此配置）"
+                    "markdownDescription": "用户设置图片地址（请将`#eoe.type#`设置为`url`以使用此配置）"
                 },
-                "asoul.notification": {
+                "eoe.notification": {
                     "type": "boolean",
                     "default": true,
                     "description": "防社死模式：通过右下角消息框提醒休息，而非直接弹出页面"

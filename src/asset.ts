@@ -2,31 +2,45 @@ import * as vscode from 'vscode';
 import axios from 'axios'
 import { Utility } from './utility';
 
-export interface ASoulTag {
+export interface EOETag {
     tag_id: number
     tag_title: string
 }
-export interface ASoulOwner {
+export interface EOEOwner {
     name: string
     uid: number
 }
-export interface ASoulGetRandomPicResult {
+
+export interface EOEGetRandomPicResultContent {
+    img_height: number,
+    img_size: number,
+    img_width: number,
+    img_src: string
+}
+export interface EOEGetRandomPicResultRaw {
+    code: number,
+    message: string,
+    ttl: number,
+    data: EOEGetRandomPicResultContent
+}
+
+export interface EOEGetRandomPicResult {
     img: string,
     dy_url: string,
-    tags: ASoulTag[],
-    owner: ASoulOwner
+    tags: EOETag[],
+    owner: EOEOwner
 }
-export interface ASoulDefaultPicResult {
+export interface EOEDefaultPicResult {
     img: string,
     tag: string
 }
-export type ImageSource = ASoulGetRandomPicResult | ASoulDefaultPicResult | vscode.Uri | string
-export function isASoulGetRandomPicResult(source: ImageSource): source is ASoulGetRandomPicResult {
-    const result = source as ASoulGetRandomPicResult;
+export type ImageSource = EOEGetRandomPicResult | EOEDefaultPicResult | vscode.Uri | string
+export function isEOEGetRandomPicResult(source: ImageSource): source is EOEGetRandomPicResult {
+    const result = source as EOEGetRandomPicResult;
     return result.img !== undefined && result.dy_url !== undefined && result.tags !== undefined;
 }
-export function isASoulDefaultPicResult(source: ImageSource): source is ASoulDefaultPicResult {
-    const result = source as ASoulDefaultPicResult;
+export function isEOEDefaultPicResult(source: ImageSource): source is EOEDefaultPicResult {
+    const result = source as EOEDefaultPicResult;
     return result.img !== undefined && result.tag !== undefined;
 }
 export function isUri(source: ImageSource): source is vscode.Uri {
@@ -38,15 +52,14 @@ export default class Asset {
     public readonly TYPE_URL_IMAGE = 'url';
     public readonly TYPE_RANDOM = 'random';
     public readonly TYPE_DEFAULT = 'default';
-    public readonly TYPE_CAO = "cao";
-    public readonly TYPE_NIUNIU = "niuniu";
+    public readonly TYPE_KUOYU = "kuoyu";
     public readonly TYPE_MIX = "mix";
 
-    public readonly NAME_AVA = 'ava';
-    public readonly NAME_BELLA = 'bella';
-    public readonly NAME_CAROL = 'carol';
-    public readonly NAME_DIANA = 'diana';
-    public readonly NAME_EILEEN = 'eileen';
+    public readonly NAME_WANER = 'waner';
+    public readonly NAME_LUZAO = 'luzao';
+    public readonly NAME_MINUO = 'minuo';
+    public readonly NAME_YUMO = 'yumo';
+    public readonly NAME_YOUEN = 'youen';
     public readonly NAME_OTHERS = 'others';
 
     public async getImageUri(): Promise<ImageSource> {
@@ -57,19 +70,15 @@ export default class Asset {
             images = await this.getRandomImages();
         } else if (type === this.TYPE_URL_IMAGE) {
             images = this.getCustomImages();
-        } else if (type === this.TYPE_CAO) {
-            images = this.getCaoImages();
-        } else if (type === this.TYPE_NIUNIU) {
-            images = this.getNiuImages();
+        } else if (type === this.TYPE_KUOYU) {
+            images = this.getKuoYuImages();
         } else if (type === this.TYPE_MIX) {
             // generate random number from 0 to 100
             let random = Math.floor(Math.random() * 100);
             if (random < 90) {
                 images = await this.getRandomImages();
-            } else if (random < 95) {
-                images = this.getCaoImages();
             } else {
-                images = this.getNiuImages();
+                images = this.getKuoYuImages();
             }
         } else {
             images = this.getDefaultImages();
@@ -92,39 +101,25 @@ export default class Asset {
         return images[n];
     }
 
-    protected getDefaultImages(): ASoulDefaultPicResult[] {
+    protected getDefaultImages(): EOEDefaultPicResult[] {
         return [
-            {img: 'https://i0.hdslb.com/bfs/album/e50ff4910f8e9f50638e5d00692736fe5382cd5f.jpg', tag: 'ava'},
-            {img: 'https://i0.hdslb.com/bfs/album/5b8478af1cd42c4121195d6c970ef895e872c2d4.jpg', tag: 'bella'},
-            {img: 'https://i0.hdslb.com/bfs/album/6b0225adb6da22810eab0343d04b54607a4cadef.jpg', tag: 'carol'},
-            {img: 'https://i0.hdslb.com/bfs/album/49f2c78bf7153326f2fcd80b589111cb4054d053.jpg', tag: 'diana'},
-            {img: 'https://i0.hdslb.com/bfs/album/052bad0f2525b44f5d00afb764d8fcae19798520.jpg', tag: 'eileen'}
+            {img: 'https://i0.hdslb.com/bfs/new_dyn/23459c97ba2a215ae4357e0fe3494e251875044092.jpg', tag: 'waner'},
+            {img: 'https://i0.hdslb.com/bfs/new_dyn/adcb8ae89f0268e4037bc4e6c3db97ca1669777785.jpg', tag: 'luzao'},
+            {img: 'https://i0.hdslb.com/bfs/new_dyn/c8f317eb530f02dd187520ad8773f1a31778026586.jpg', tag: 'minuo'},
+            {img: 'https://i0.hdslb.com/bfs/new_dyn/c506da3d4d6d34c242c7ddd7ecf924741811071010.jpg', tag: 'yumo'},
+            {img: 'https://i0.hdslb.com/bfs/new_dyn/b463d650abe6c104a0fe73bc87d5f7491795147802.jpg', tag: 'youen'}
         ]
     }
 
-    protected getCaoImages(): ASoulDefaultPicResult[] {
+    protected getKuoYuImages(): EOEDefaultPicResult[] {
         let uris = [
-            'https://i0.hdslb.com/bfs/album/57ad5c6ac6e924066339065b0afb852f53da451d.png',
-            'https://i0.hdslb.com/bfs/album/64d0c8eb810e17cf3e1194db771e82a75d484cad.png',
-
-            'https://i0.hdslb.com/bfs/album/b43d6f55809060f4015f85028bcc04267c90b07f.gif',
-            'https://i0.hdslb.com/bfs/album/6d6682adb6e6691e9e4fc1e16f9946a43031d3ae.gif',
-            'https://i0.hdslb.com/bfs/album/06e0cf94f815dcd503bc7a06af66601545fada3b.gif',
-            'https://i0.hdslb.com/bfs/album/d5d2fb54828ab5c582fdf4d362ea3ef67f511932.gif',
-            'https://i0.hdslb.com/bfs/album/f7e3edf04f30e8bce3e5b1bb164aa2e363e18761.gif',
-            'https://i0.hdslb.com/bfs/album/f41087048f5df564ff223a3b88f3ba12a6446962.gif',
-            'https://i0.hdslb.com/bfs/album/91c27b71a9b65d3e344f11dcc1103633ed07beab.gif',
-            'https://i0.hdslb.com/bfs/album/dfd12760220b806bda6d4cffb745eef711ce768a.gif'
+            'https://i0.hdslb.com/bfs/album/176830e500f7e00098d74a2613f56db7adaa15fb.jpg'
         ];
-        let results = [] as ASoulDefaultPicResult[]
+        let results = [] as EOEDefaultPicResult[]
         uris.forEach((uri, _, __) => {
-            results.push({img: uri, tag: 'cao'});
+            results.push({img: uri, tag: 'kuoyu'});
         })
         return results;
-    }
-
-    protected getNiuImages(): ASoulDefaultPicResult[] {
-        return [{ img: 'https://s3.bmp.ovh/imgs/2021/11/cd64f50b66155cb5.gif', tag: 'niuniu' }];
     }
 
     protected getConfigType(): string {
@@ -137,12 +132,15 @@ export default class Asset {
 
     public async getRandomImages() {
         try {
-            const response = await axios.get<ASoulGetRandomPicResult>(
-                "https://api.asoulfanart.com:8000/getRandomPic",
-                { timeout: 8000 });
-            return [response.data];
+            const response = await axios.get<EOEGetRandomPicResultRaw>(
+                "https://api.eoe.best/eoefans-api/v1/pic/random?subscription-key=3cc4284fbb864965a7a9ad0f28af8496",
+                { timeout: 8000 }) as EOEGetRandomPicResultRaw;
+            let return_item = {} as EOEGetRandomPicResult
+            return_item.img = response.data.img_src
+            return_item.dy_url = "https://www.bilibili.com"
+            return [return_item]
         } catch (err) {
-            return [] as ASoulGetRandomPicResult[];
+            return [] as EOEGetRandomPicResult[];
         }
     }
 
@@ -150,29 +148,29 @@ export default class Asset {
         return Utility.getConfiguration().get<string>('title', '');
     }
 
-    public getName(tags: ASoulTag[]): string {
+    public getName(tags: EOETag[]): string {
         let tagsCnt = 0;
         let name = this.NAME_OTHERS;
         tags.forEach(element => {
-            if (element.tag_title.includes('向晚') && name != this.NAME_AVA) {
+            if (element.tag_title.includes('莞儿') && name != this.NAME_WANER) {
                 tagsCnt++;
-                name = this.NAME_AVA;
+                name = this.NAME_WANER;
             }
-            if (element.tag_title.includes('贝拉') && name != this.NAME_BELLA) {
+            if (element.tag_title.includes('露早') && name != this.NAME_LUZAO) {
                 tagsCnt++;
-                name = this.NAME_BELLA;
+                name = this.NAME_LUZAO;
             }
-            if (element.tag_title.includes('珈乐') && name != this.NAME_CAROL) {
+            if (element.tag_title.includes('米诺') && name != this.NAME_MINUO) {
                 tagsCnt++;
-                name = this.NAME_CAROL;
+                name = this.NAME_MINUO;
             }
-            if (element.tag_title.includes('嘉然') && name != this.NAME_DIANA) {
+            if (element.tag_title.includes('虞莫') && name != this.NAME_YUMO) {
                 tagsCnt++;
-                name = this.NAME_DIANA;
+                name = this.NAME_YUMO;
             }
-            if (element.tag_title.includes('乃琳') && name != this.NAME_EILEEN) {
+            if (element.tag_title.includes('柚恩') && name != this.NAME_YOUEN) {
                 tagsCnt++;
-                name = this.NAME_EILEEN;
+                name = this.NAME_YOUEN;
             }
         });
         if (tagsCnt != 1) {
@@ -183,36 +181,36 @@ export default class Asset {
 
     public getNameFromUri(uri: vscode.Uri): string {
         let name = this.NAME_OTHERS;
-        if (uri.path.includes('ava')) {
-            name = this.NAME_AVA;
+        if (uri.path.includes('waner')) {
+            name = this.NAME_WANER;
         }
-        if (uri.path.includes('bella')) {
-            name = this.NAME_BELLA;
+        if (uri.path.includes('luzao')) {
+            name = this.NAME_LUZAO;
         }
-        if (uri.path.includes('carol')) {
-            name = this.NAME_CAROL;
+        if (uri.path.includes('minuo')) {
+            name = this.NAME_MINUO;
         }
-        if (uri.path.includes('diana')) {
-            name = this.NAME_DIANA;
+        if (uri.path.includes('yumo')) {
+            name = this.NAME_YUMO;
         }
-        if (uri.path.includes('eileen')) {
-            name = this.NAME_EILEEN;
+        if (uri.path.includes('youen')) {
+            name = this.NAME_YOUEN;
         }
         return name;
     }
 
     public getNamedTitle(name: string): string {
         let title = "";
-        if (name === this.NAME_AVA) {
-            title = Utility.getConfiguration().get<string>('titleAva', '');
-        } else if (name === this.NAME_BELLA) {
-            title = Utility.getConfiguration().get<string>('titleBella', '');
-        } else if (name === this.NAME_CAROL) {
-            title = Utility.getConfiguration().get<string>('titleCarol', '');
-        } else if (name === this.NAME_DIANA) {
-            title = Utility.getConfiguration().get<string>('titleDiana', '');
-        } else if (name === this.NAME_EILEEN) {
-            title = Utility.getConfiguration().get<string>('titleEileen', '');
+        if (name === this.NAME_WANER) {
+            title = Utility.getConfiguration().get<string>('titleWanEr', '');
+        } else if (name === this.NAME_LUZAO) {
+            title = Utility.getConfiguration().get<string>('titleLuZao', '');
+        } else if (name === this.NAME_MINUO) {
+            title = Utility.getConfiguration().get<string>('titleMiNuo', '');
+        } else if (name === this.NAME_YUMO) {
+            title = Utility.getConfiguration().get<string>('titleYuMo', '');
+        } else if (name === this.NAME_YOUEN) {
+            title = Utility.getConfiguration().get<string>('titleYouEn', '');
         }
 
         if (title === "") {
@@ -221,7 +219,7 @@ export default class Asset {
         return title;
     }
 
-    public getCaoTitle(): string {
+    public getKuoYuTitle(): string {
         let title = Utility.getConfiguration().get<string>('titleOfficial', '');
         if (title === "") {
             title = Utility.getConfiguration().get<string>('title', '');

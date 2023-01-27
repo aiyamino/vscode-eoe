@@ -4,6 +4,6 @@ import * as vscode from "vscode";
 export class Utility {
 
     public static getConfiguration(): vscode.WorkspaceConfiguration {
-        return vscode.workspace.getConfiguration("asoul");
+        return vscode.workspace.getConfiguration("eoe");
     }
 }
