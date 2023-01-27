@@ -17,13 +17,13 @@
         "鼓励"
     ],
     "bugs": {
-        "url": "https://github.com/as042971/vscode-eoe/issues",
+        "url": "https://github.com/aiyamino/vscode-eoe/issues",
         "email": "as042971@outlook.com"
     },
-    "homepage": "https://github.com/as042971/vscode-eoe/blob/master/README.md",
+    "homepage": "https://github.com/aiyamino/vscode-eoe/blob/master/README.md",
     "repository": {
         "type": "git",
-        "url": "https://github.com/as042971/vscode-eoe.git"
+        "url": "https://github.com/aiyamino/vscode-eoe.git"
     },
     "activationEvents": [
         "onCommand:eoe.showReminderView",
@@ -60,32 +60,32 @@
                 },
                 "eoe.titleWanEr": {
                     "type": "string",
-                    "default": "亲爱的小莞熊，代码写久了，该休息啦~",
+                    "default": "莞儿来提醒小莞熊要注意休息了哦，写代码辛苦啦(ɔˆз(ˆ⌣ˆc)",
                     "description": "🐻莞儿🐻相关图片的页面内展示文字"
                 },
                 "eoe.titleLuZao": {
                     "type": "string",
-                    "default": "亲爱的GOGO队，代码写久了，该休息啦~",
+                    "default": "GOGO队写代码辛苦啦！！要注意休息，蒽。",
                     "description": "🐰露早🐰相关图片的页面内展示文字"
                 },
                 "eoe.titleMiNuo": {
                     "type": "string",
-                    "default": "亲爱的酷诺米，代码写久了，该休息啦~",
+                    "default": "被指到的酷诺米要记得休息！哈哈，我刚醒😋",
                     "description": "😈米诺😈相关图片的页面内展示文字"
                 },
                 "eoe.titleYuMo": {
                     "type": "string",
-                    "default": "亲爱的美人虞，代码写久了，该休息啦~",
+                    "default": "美人虞要注意休息哇！写代码辛苦啦，嘿嘿！",
                     "description": "🍆虞莫🍆相关图片的页面内展示文字"
                 },
                 "eoe.titleYouEn": {
                     "type": "string",
-                    "default": "亲爱的柚恩蜜，代码写久了，该休息啦~",
+                    "default": "亲爱的柚恩蜜宝贝，写代码辛苦啦，要注意休息柚(*¯︶¯*)",
                     "description": "🍯柚恩🍯相关图片的页面内展示文字"
                 },
                 "eoe.titleOfficial": {
                     "type": "string",
-                    "default": "小伙伴你好，代码写久了，该休息啦~",
+                    "default": "亲爱的EOES你好，临时插播一条消息，你已经写代码很久了，要注意休息。",
                     "description": "🐛蛞蝓🐛相关图片的页面内展示文字"
                 },
                 "eoe.type": {

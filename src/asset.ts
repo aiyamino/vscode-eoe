@@ -3,36 +3,38 @@ import axios from 'axios'
 import { Utility } from './utility';
 
 export interface EOETag {
-    tag_id: number
-    tag_title: string
+    tag_id: number;
+    tag_title: string;
 }
 export interface EOEOwner {
-    name: string
-    uid: number
+    name: string;
+    uid: number;
 }
 
 export interface EOEGetRandomPicResultContent {
-    img_height: number,
-    img_size: number,
-    img_width: number,
-    img_src: string
+    img_height: number;
+    img_size: number;
+    img_width: number;
+    img_src: string;
+    dynamic_url: string;
+    dynamic_id: string;
 }
 export interface EOEGetRandomPicResultRaw {
-    code: number,
-    message: string,
-    ttl: number,
-    data: EOEGetRandomPicResultContent
+    code: number;
+    message: string;
+    ttl: number;
+    data: EOEGetRandomPicResultContent;
 }
 
 export interface EOEGetRandomPicResult {
-    img: string,
-    dy_url: string,
-    tags: EOETag[],
-    owner: EOEOwner
+    img: string;
+    dy_url: string;
+    tags: EOETag[];
+    owner: EOEOwner;
 }
 export interface EOEDefaultPicResult {
-    img: string,
-    tag: string
+    img: string;
+    tag: string;
 }
 export type ImageSource = EOEGetRandomPicResult | EOEDefaultPicResult | vscode.Uri | string
 export function isEOEGetRandomPicResult(source: ImageSource): source is EOEGetRandomPicResult {
@@ -133,12 +135,14 @@ export default class Asset {
     public async getRandomImages() {
         try {
             const response = await axios.get<EOEGetRandomPicResultRaw>(
-                "https://api.eoe.best/eoefans-api/v1/pic/random?subscription-key=3cc4284fbb864965a7a9ad0f28af8496",
-                { timeout: 8000 }) as EOEGetRandomPicResultRaw;
-            let return_item = {} as EOEGetRandomPicResult
-            return_item.img = response.data.img_src
-            return_item.dy_url = "https://www.bilibili.com"
-            return [return_item]
+                "https://api.allorigins.win/raw?url=https://api.eoe.best/eoefans-api/v1/pic/random?subscription-key=3cc4284fbb864965a7a9ad0f28af8496&nocache=" + Math.random().toString(),
+                {timeout: 8000});
+            let return_item = {} as EOEGetRandomPicResult;
+            return_item.img = response.data.data.img_src;
+            return_item.dy_url = response.data.data.dynamic_url;
+            return_item.tags = [];
+            console.log(return_item);
+            return [return_item];
         } catch (err) {
             return [] as EOEGetRandomPicResult[];
         }
