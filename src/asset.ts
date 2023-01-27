@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import axios from 'axios'
+import axios from 'axios';
 import { Utility } from './utility';
 
 export interface EOETag {
@@ -143,7 +143,7 @@ export default class Asset {
     public async getRandomImages() {
         try {
             const response = await axios.get<EOEGetRandomPicResultRaw>(
-                "https://api.allorigins.win/raw?url=https://api.eoe.best/eoefans-api/v1/pic/random?subscription-key=3cc4284fbb864965a7a9ad0f28af8496&nocache=" + Math.random().toString(),
+                "https://api.eoe.best/eoefans-api/v1/pic/random?subscription-key=837c66a6bfe14b029e0ea9850096fb62",
                 {timeout: 8000});
             let return_item = {} as EOEGetRandomPicResult;
             return_item.img = response.data.data.img_src;

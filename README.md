@@ -32,7 +32,7 @@ Fork 自 [超越鼓励师](https://github.com/formulahendry/vscode-ycy) 及 [A-S
 | 选项 | 名称 | 描述 |
 | -- | -- | -- |
 | url | 自定义图片 | 参见`eoe.customImages`的配置 |
-| random | 二创 | 来自[这里](https://eoefanart.com/pic)的随机二创 |
+| random | 二创 | 来自[这里](https://www.eoefans.com/)的随机二创 |
 | default | 官方图 | EOE成员的官方海报 |
 | kuoyu | 蛞蝓鼓励师 | 扭！ |
 | mix | 混合模式 | 90%概率弹出二创，10%概率弹出蛞蝓|
