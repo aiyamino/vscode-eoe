@@ -16,8 +16,10 @@ export interface EOEGetRandomPicResultContent {
     img_size: number;
     img_width: number;
     img_src: string;
+    img_id: number;
     dynamic_url: string;
-    dynamic_id: string;
+    dynamic_id: number;
+    dynamic_id_str: string;
     tags: EOETag[];
 }
 export interface EOEGetRandomPicResultRaw {
@@ -30,6 +32,8 @@ export interface EOEGetRandomPicResultRaw {
 export interface EOEGetRandomPicResult {
     img: string;
     dy_url: string;
+    dy_id: string;
+    img_id: number;
     tags: EOETag[];
     owner: EOEOwner;
 }
@@ -146,10 +150,11 @@ export default class Asset {
                 "https://api.eoe.best/eoefans-api/v1/pic/random?subscription-key=837c66a6bfe14b029e0ea9850096fb62",
                 {timeout: 8000});
             let return_item = {} as EOEGetRandomPicResult;
-            return_item.img = response.data.data.img_src;
+            return_item.img    = response.data.data.img_src;
             return_item.dy_url = response.data.data.dynamic_url;
-            return_item.tags = response.data.data.tags;
-            console.log(return_item);
+            return_item.tags   = response.data.data.tags;
+            return_item.dy_id  = response.data.data.dynamic_id_str;
+            return_item.img_id = response.data.data.img_id;
             return [return_item];
         } catch (err) {
             return [] as EOEGetRandomPicResult[];
@@ -164,23 +169,23 @@ export default class Asset {
         let tagsCnt = 0;
         let name = this.NAME_OTHERS;
         tags.forEach(element => {
-            if (element.tag_name.includes('莞儿') && name != this.NAME_WANER) {
+            if ((element.tag_name.includes('莞儿') || element.tag_name.includes('小莞熊')) && name != this.NAME_WANER) {
                 tagsCnt++;
                 name = this.NAME_WANER;
             }
-            if (element.tag_name.includes('露早') && name != this.NAME_LUZAO) {
+            if ((element.tag_name.includes('露早') || element.tag_name.includes('GOGO队')) && name != this.NAME_LUZAO) {
                 tagsCnt++;
                 name = this.NAME_LUZAO;
             }
-            if (element.tag_name.includes('米诺') && name != this.NAME_MINUO) {
+            if ((element.tag_name.includes('米诺') || element.tag_name.includes('酷诺米')) && name != this.NAME_MINUO) {
                 tagsCnt++;
                 name = this.NAME_MINUO;
             }
-            if (element.tag_name.includes('虞莫') && name != this.NAME_YUMO) {
+            if ((element.tag_name.includes('虞莫') || element.tag_name.includes('虞与你在一起') || element.tag_name.includes('美人虞')) && name != this.NAME_YUMO) {
                 tagsCnt++;
                 name = this.NAME_YUMO;
             }
-            if (element.tag_name.includes('柚恩') && name != this.NAME_YOUEN) {
+            if ((element.tag_name.includes('柚恩') || element.tag_name.includes('柚恩蜜')) && name != this.NAME_YOUEN) {
                 tagsCnt++;
                 name = this.NAME_YOUEN;
             }

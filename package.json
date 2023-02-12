@@ -2,7 +2,7 @@
     "name": "eoe",
     "displayName": "EOE 鼓励师",
     "description": "写代码不再孤单，有EOE与你同在",
-    "version": "0.6.2",
+    "version": "0.6.3",
     "publisher": "as042971",
     "icon": "images/logo.png",
     "engines": {
