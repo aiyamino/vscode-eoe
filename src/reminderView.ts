@@ -66,12 +66,10 @@ export class ReminderView {
                             vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(message.args));
                             break;
                         case "report":
-                            console.log(message);
-                            let response = await axios.post(
+                            await axios.post(
                                 "https://api.eoe.best/eoefans-api/v1/pic/feedback?subscription-key=3cc4284fbb864965a7a9ad0f28af8496", message.args, { headers: {
                                     "Content-Type": "application/json"
                                 }});
-                            console.log(response);
                             break;
                     }
                 }
